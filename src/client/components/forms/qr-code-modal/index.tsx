@@ -15,6 +15,7 @@ import './style.scss'
 
 interface QRCodeModalProps {
     onClickCreateHandler: (link: string) => void,
+    updateLinkField?: string
 }
 
 const QRcodeEditButtonStyles = {
@@ -25,8 +26,9 @@ const QRcodeEditButtonStyles = {
 }
 
 export default function QRCodeModal(props: QRCodeModalProps) {
-    const { onClickCreateHandler } = props;
-    const [link, setLink] = useState<string>('');
+    const { onClickCreateHandler, updateLinkField } = props;
+    const defaultLink = updateLinkField ? updateLinkField : '';
+    const [link, setLink] = useState<string>(defaultLink);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);

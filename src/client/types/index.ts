@@ -1,15 +1,40 @@
-import { ColorName } from '../enum';
+import {ColorName, TextStyle} from '../enum';
 
 export interface StickerFormData {
-    stickerName?: string;
-    companyName?: string;
+    stickerName: string;
+    companyName: string;
+    qrCodeLink: string;
     address?: string;
     phone?: string;
     service?: string;
     promo?: string;
     discount?: string;
-    qrCodeLink: string;
     stickerColor?: ColorName;
     textColor?: ColorName;
     textStyle?: string;
+}
+
+export interface StickerListItem {
+    id: number;
+    style: {
+        background: string;
+        color?: string;
+        textStyle?: TextStyle;
+    }
+    info: {
+        name: string;
+        companyName: string;
+        qrcode: string;
+        service?: string;
+        discount?: string;
+        promo?: string;
+        phone?: string;
+        address?: string;
+    }
+}
+
+export interface User {
+    id: number;
+    name: string;
+    stickersList: StickerListItem[];
 }

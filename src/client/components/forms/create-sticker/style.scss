@@ -9,6 +9,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  top: 80px;
 }
 
 .create-sticker__form {
@@ -32,6 +34,28 @@
   top: -15px;
 }
 
+//.sticker__preview {
+//  display: flex;
+//  flex-direction: column;
+//  align-items: center;
+//  gap: 5px;
+//  text-align: center;
+//  padding: 1rem;
+//  width: 226px;
+//  height: 300px;
+//
+//  // background-image: url('/sticker/sticker-white.png');
+//  // background-image: url('/sticker/sticker-black.png');
+//  // background-image: url('/sticker/sticker-green.png');
+//  background-repeat: no-repeat;
+//  background-size: contain;
+//
+//  // mix-blend-mode: multiply;
+//
+//  position: relative;
+//}
+
+ // sticker with css styles
 .sticker__preview {
   display: flex;
   flex-direction: column;
@@ -115,12 +139,16 @@ input#promo {
 
 .create-sticker__submit-container {
   position: absolute;
-  bottom: 100px;
+  bottom: 5px;
   right: 50%;
-  transform: translateX(36%);
+  transform: translateX(46%);
 }
 
 @media (max-width: 600px) {
+  .create-sticker__form-wrapper {
+    top: 0;
+  }
+
   .sticker__preview {
     width: 145px;
     height: 245px;

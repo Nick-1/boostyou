@@ -1,0 +1,20 @@
+.header__logo {
+  width: 100px;
+  position: relative;
+
+  &.desktop {
+    bottom: 3px;
+  }
+
+  &.mobile {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  img {
+    width: 100%;
+  }
+
+}

@@ -1,30 +1,45 @@
-import { useState } from 'react';
+import {use, useState} from 'react';
+import { useNavigate, useParams } from 'react-router';
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import StickyNote2Icon from '@mui/icons-material/StickyNote2';
+import EditIcon from '@mui/icons-material/Edit';
+import Button from '@mui/material/Button';
 
 import ColorMarker from '../../color-marker';
-
+import QRCodeModal from '../qr-code-modal';
 import { ColorCode, ColorName, TextStyle } from '../../../enum';
 import type { StickerFormData } from '../../../types';
+import { UserContext } from '../../../context/user-context.tsx';
+
+import { toStickerItemMapper } from './to-sticker-item.mapper.ts';
 
 import './style.scss';
-import Button from '@mui/material/Button';
-import QRCodeModal from '../qr-code-modal';
 
-const CreateStickerForm = () => {
-    const [formData, setFormData] = useState<StickerFormData>({
-        stickerName: '',
-        companyName: '',
-        promo: '',
-        discount: '',
-        service: '',
-        qrCodeLink: '',
-        address: '',
-        phone: '',
-        stickerColor: ColorName.GREEN,
-        textColor: ColorName.BLACK,
-        textStyle: TextStyle.NORMAL,
-    });
+interface CreateStickerFormProps {
+    updateFields?: StickerFormData | null;
+}
+
+const defaultFormValues = {
+    stickerName: '',
+    companyName: '',
+    promo: '',
+    discount: '',
+    service: '',
+    qrCodeLink: '',
+    address: '',
+    phone: '',
+    stickerColor: ColorName.GREEN,
+    textColor: ColorName.BLACK,
+    textStyle: TextStyle.NORMAL,
+}
+
+const CreateStickerForm = (props: CreateStickerFormProps) => {
+    const { updateFields } = props
+    const { user, addSticker, updateSticker } = use(UserContext)!;
+    const navigate = useNavigate();
+    const { stickerId } = useParams<{ stickerId: string }>();
+    const formValues = updateFields ? updateFields : defaultFormValues;
+    const [formData, setFormData] = useState<StickerFormData>(formValues);
 
     const onClickGenerateQRCodeHandler = (link: string) => {
         setFormData(prev => ({
@@ -49,14 +64,53 @@ const CreateStickerForm = () => {
         }));
     };
 
-    const handleSubmit = () => {
-        console.log(formData);
+    const createHandler = () => {
+        addSticker(toStickerItemMapper(formData));
+        navigate('/stickers/list');
     };
+
+    const updateHandler = () => {
+        if (!stickerId || !user) {
+            navigate('/stickers/list');
+            return;
+        }
+
+        const id = Number(stickerId);
+        const updatedItem = { ...toStickerItemMapper(formData), id };
+        updateSticker(id, updatedItem);
+        navigate('/stickers/list');
+    };
+
+    const manageSubmitButton = () => {
+        if (updateFields) {
+            return (
+                <Button
+                    sx={{ width: '100%', borderRadius: 0, height: 60 }}
+                    variant="contained"
+                    onClick={updateHandler}
+                    endIcon={<EditIcon />}
+                >
+                    Update sticker
+                </Button>
+            )
+        }
+
+        return (
+            <Button
+                sx={{ width: '100%', borderRadius: 0, height: 60 }}
+                variant="contained"
+                onClick={createHandler}
+                endIcon={<StickyNote2Icon />}
+            >
+                Create sticker
+            </Button>
+        )
+    }
 
     return (
         <div className="create-sticker__container">
             <div className="create-sticker__form-wrapper">
-                <form className="create-sticker__form" onSubmit={handleSubmit}>
+                <form className="create-sticker__form">
                     <input
                         id="stickerName"
                         maxLength={16}
@@ -88,6 +142,12 @@ const CreateStickerForm = () => {
                                 </MenuItem>
                                 <MenuItem value={ColorName.BLUE}>
                                     <ColorMarker color={ColorCode.BLUE} label="Blue" />
+                                </MenuItem>
+                                <MenuItem value={ColorName.ORANGE}>
+                                    <ColorMarker color={ColorCode.ORANGE} label="Orange" />
+                                </MenuItem>
+                                <MenuItem value={ColorName.BLACK}>
+                                    <ColorMarker color={ColorCode.BLACK} label="Black" />
                                 </MenuItem>
                             </Select>
                         </FormControl>
@@ -178,7 +238,10 @@ const CreateStickerForm = () => {
                             onChange={handleChange}
                         />
 
-                        <QRCodeModal onClickCreateHandler={onClickGenerateQRCodeHandler} />
+                        <QRCodeModal
+                            updateLinkField={formValues?.qrCodeLink}
+                            onClickCreateHandler={onClickGenerateQRCodeHandler}
+                        />
 
                         <Box className="create-sticker__input-user-contacts">
                             <input
@@ -207,14 +270,7 @@ const CreateStickerForm = () => {
             </div>
 
             <Box className="create-sticker__submit-container">
-                <Button
-                    sx={{ width: '100%', borderRadius: 0, height: 60 }}
-                    variant="contained"
-                    onClick={handleSubmit}
-                    endIcon={<StickyNote2Icon />}
-                >
-                    Create sticker
-                </Button>
+                { manageSubmitButton() }
             </Box>
         </div>
     )
