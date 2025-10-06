@@ -32,7 +32,7 @@ const StickersListPage = () => {
                 <Grid key={sticker.id} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
                     <Card>
                         <CardMedia
-                            component={Link} to={`/stickers/update/${sticker.id}`}
+                            className="sticker-list-item-preview"
                             sx={{
                                 height: 140,
                                 backgroundColor: sticker.style.background,

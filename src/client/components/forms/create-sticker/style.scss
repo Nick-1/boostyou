@@ -1,6 +1,7 @@
 .create-sticker__container {
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
 .create-sticker__form-wrapper {
@@ -34,28 +35,6 @@
   top: -15px;
 }
 
-//.sticker__preview {
-//  display: flex;
-//  flex-direction: column;
-//  align-items: center;
-//  gap: 5px;
-//  text-align: center;
-//  padding: 1rem;
-//  width: 226px;
-//  height: 300px;
-//
-//  // background-image: url('/sticker/sticker-white.png');
-//  // background-image: url('/sticker/sticker-black.png');
-//  // background-image: url('/sticker/sticker-green.png');
-//  background-repeat: no-repeat;
-//  background-size: contain;
-//
-//  // mix-blend-mode: multiply;
-//
-//  position: relative;
-//}
-
- // sticker with css styles
 .sticker__preview {
   display: flex;
   flex-direction: column;
@@ -63,14 +42,13 @@
   gap: 5px;
   text-align: center;
   padding: 1rem;
-  border-radius: 14px;
-  width: 200px;
+  width: 226px;
   height: 300px;
+  background-repeat: no-repeat;
+  background-size: contain;
 
-  background: rgba(144, 238, 144, 0.9);
+  // mix-blend-mode: multiply;
 
-  transform: perspective(800px) rotateX(-20deg) skewY(0deg);
-  mix-blend-mode: multiply;
   position: relative;
 }
 
@@ -124,33 +102,35 @@ input#promo {
 
 .create-sticker__input-user-contacts {
   position: absolute;
-  bottom: 7px;
+  bottom: 20px;
+  max-width: 190px;
 
   input#address {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
   }
 
   input#phone {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
   }
 }
 
 .create-sticker__submit-container {
   position: absolute;
-  bottom: 5px;
-  right: 50%;
-  transform: translateX(46%);
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  transform: translateX(0);
 }
 
 @media (max-width: 600px) {
   .create-sticker__form-wrapper {
-    top: 0;
+    top: 15px;
   }
 
   .sticker__preview {
-    width: 145px;
+    width: 170px;
     height: 245px;
     gap: 2px;
   }
@@ -174,6 +154,8 @@ input#promo {
   }
 
   .create-sticker__input-user-contacts {
+    bottom: 30px;
+
     input#address {
       font-size: 16px;
     }
@@ -214,7 +196,7 @@ input#promo {
   }
   
   .sticker__preview {
-    width: 130px;
+    width: 157px;
     height: 210px;
   }
   .sticker__preview {
@@ -223,5 +205,10 @@ input#promo {
 
   input#companyName {
     margin-top: -10px;
+  }
+
+  .create-sticker__input-user-contacts {
+    position: absolute;
+    bottom: 10px;
   }
 }

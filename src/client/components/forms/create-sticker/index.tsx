@@ -1,4 +1,4 @@
-import {use, useState} from 'react';
+import {use, useRef, useState} from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import StickyNote2Icon from '@mui/icons-material/StickyNote2';
@@ -28,12 +28,13 @@ const defaultFormValues = {
     qrCodeLink: '',
     address: '',
     phone: '',
-    stickerColor: ColorName.GREEN,
+    stickerColor: ColorName.WHITE,
     textColor: ColorName.BLACK,
     textStyle: TextStyle.NORMAL,
 }
 
 const CreateStickerForm = (props: CreateStickerFormProps) => {
+    const formRef = useRef<HTMLFormElement>(null);
     const { updateFields } = props
     const { user, addSticker, updateSticker } = use(UserContext)!;
     const navigate = useNavigate();
@@ -65,6 +66,10 @@ const CreateStickerForm = (props: CreateStickerFormProps) => {
     };
 
     const createHandler = () => {
+        if (formRef.current && !formRef.current.reportValidity()) {
+            return; // required поля не заповнені
+        }
+
         addSticker(toStickerItemMapper(formData));
         navigate('/stickers/list');
     };
@@ -72,6 +77,10 @@ const CreateStickerForm = (props: CreateStickerFormProps) => {
     const updateHandler = () => {
         if (!stickerId || !user) {
             navigate('/stickers/list');
+            return;
+        }
+
+        if (formRef.current && !formRef.current.reportValidity()) {
             return;
         }
 
@@ -110,10 +119,10 @@ const CreateStickerForm = (props: CreateStickerFormProps) => {
     return (
         <div className="create-sticker__container">
             <div className="create-sticker__form-wrapper">
-                <form className="create-sticker__form">
+                <form ref={formRef} className="create-sticker__form">
                     <input
                         id="stickerName"
-                        maxLength={16}
+                        maxLength={20}
                         className="create-sticker__input"
                         name="stickerName"
                         placeholder="Sticker Name"
@@ -134,6 +143,9 @@ const CreateStickerForm = (props: CreateStickerFormProps) => {
                                 onChange={handleSelectChange}
                                 label="Sticker color"
                             >
+                                <MenuItem value={ColorName.WHITE}>
+                                    <ColorMarker color={ColorCode.WHITE} label="White" />
+                                </MenuItem>
                                 <MenuItem value={ColorName.RED}>
                                     <ColorMarker color={ColorCode.RED} label="Red" />
                                 </MenuItem>
@@ -145,9 +157,6 @@ const CreateStickerForm = (props: CreateStickerFormProps) => {
                                 </MenuItem>
                                 <MenuItem value={ColorName.ORANGE}>
                                     <ColorMarker color={ColorCode.ORANGE} label="Orange" />
-                                </MenuItem>
-                                <MenuItem value={ColorName.BLACK}>
-                                    <ColorMarker color={ColorCode.BLACK} label="Black" />
                                 </MenuItem>
                             </Select>
                         </FormControl>
@@ -182,7 +191,6 @@ const CreateStickerForm = (props: CreateStickerFormProps) => {
                                 label="Text style"
                             >
                                 <MenuItem value={TextStyle.NORMAL}>Normal</MenuItem>
-                                <MenuItem value={TextStyle.BOLD}>Bold</MenuItem>
                                 <MenuItem value={TextStyle.ITALIC}>Italic</MenuItem>
                             </Select>
                         </FormControl>
@@ -191,8 +199,7 @@ const CreateStickerForm = (props: CreateStickerFormProps) => {
                     <div
                         className="sticker__preview"
                         style={{
-                            //@ts-ignore
-                            backgroundColor: ColorCode[formData.stickerColor],
+                             backgroundImage: `url(/sticker/${formData.stickerColor}.png)`,
                             color: formData.textColor,
                             fontWeight: formData.textStyle === 'bold' ? 'bold' : undefined,
                             fontStyle: formData.textStyle === 'italic' ? 'italic' : undefined,
@@ -211,7 +218,7 @@ const CreateStickerForm = (props: CreateStickerFormProps) => {
 
                         <input
                             id="service"
-                            maxLength={20}
+                            maxLength={16}
                             className="create-sticker__input"
                             name="service"
                             placeholder="Your Service"
@@ -231,6 +238,7 @@ const CreateStickerForm = (props: CreateStickerFormProps) => {
 
                         <input
                             id="promo"
+                            maxLength={20}
                             className="create-sticker__input"
                             name="promo"
                             placeholder="Your Promo"
@@ -246,7 +254,7 @@ const CreateStickerForm = (props: CreateStickerFormProps) => {
                         <Box className="create-sticker__input-user-contacts">
                             <input
                                 id="address"
-                                maxLength={20}
+                                maxLength={18}
                                 className="create-sticker__input"
                                 name="address"
                                 placeholder="Your address"
@@ -256,7 +264,7 @@ const CreateStickerForm = (props: CreateStickerFormProps) => {
 
                             <input
                                 id="phone"
-                                maxLength={20}
+                                maxLength={16}
                                 type="tel"
                                 className="create-sticker__input"
                                 name="phone"

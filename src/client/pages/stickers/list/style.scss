@@ -1,27 +1,17 @@
-.sticker-item {
-  width: 280px;
-  padding: 16px;
-  border-radius: 8px;
-  text-align: center;
-
-  // картка/наклейка на білому тлі
-  background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
-  border: 1px solid #000000;
-
-  // позиціонування для псевдоелементу
+.sticker-list-item-preview {
   position: relative;
   overflow: hidden;
 
-  // тіні
-  box-shadow:
-      0 4px 6px rgba(0, 0, 0, 0.4),
-      0 2px 4px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow:
-        0 6px 12px rgba(0, 0, 0, 0.15),
-        0 3px 6px rgba(0, 0, 0, 0.1);
+  &:before {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-image: url('/qr-code-bg-item.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: 32%;
+    left: 50%;
+    transform: translate(-50%, 0%);
   }
 }
