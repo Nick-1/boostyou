@@ -16,8 +16,8 @@ import MenuItem from '@mui/material/MenuItem';
 
 import './style.scss';
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ['My stickers'];
+const settings = ['Logout'];
 
 const Header = () => {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
