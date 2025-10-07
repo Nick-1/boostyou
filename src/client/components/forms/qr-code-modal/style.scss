@@ -1,0 +1,60 @@
+.QR-code-modal__container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 15px;
+}
+
+.qr-code-modal__actions {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 5px;
+  mix-blend-mode: multiply;
+}
+
+.qr-code-modal__create {
+  scale: 1.5;
+}
+
+.edit-qr-code__button {
+  position: absolute;
+}
+
+.qr-code-modal__create {
+  position: relative;
+  top: 30px;
+}
+
+@media (max-width: 600px) {
+  .qr-code-modal__actions {
+    scale: 0.7;
+    top: -8px
+  }
+  .qr-code-modal__create {
+    scale: 1;
+    top: 13px;
+  }
+}
+
+@media (max-width: 400px) {
+  .QR-code-modal__container {
+    width: 310px;
+  }
+
+  .qr-code-modal__actions {
+    scale: 0.7;
+  }
+
+  .qr-code-modal__actions {
+    top: -12px;
+  }
+  .qr-code-modal__create {
+    top: 10px;
+    scale: 1.1;
+  }
+}

@@ -1,0 +1,17 @@
+.sticker-list-item-preview {
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-image: url('/qr-code-bg-item.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: 32%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+}
