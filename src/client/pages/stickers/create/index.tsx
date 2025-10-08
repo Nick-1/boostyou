@@ -6,7 +6,11 @@ import './style.scss';
 
 const CreateStickerPage = () => {
     return (
-        <Container className="create-sticker__container" maxWidth="xl">
+        <Container
+            className="full-screen-page-container"
+            sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: "center" }}
+            maxWidth="xl"
+        >
             <CreateStickerForm />
         </Container>
 

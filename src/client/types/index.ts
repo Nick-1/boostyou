@@ -11,7 +11,7 @@ export interface StickerFormData {
     discount?: string;
     stickerColor: ColorName;
     textColor: ColorName;
-    textStyle: string;
+    textStyle: TextStyle;
 }
 
 export interface StickerListItem {

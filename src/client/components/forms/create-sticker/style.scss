@@ -1,20 +1,17 @@
 .create-sticker__form-wrapper {
   width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  top: 80px;
-}
-
-.create-sticker__form {
-  width: 600px;
-  aspect-ratio: 9 / 16;
+  height: 1000px;
   background-image: url('/white.jpeg');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-sticker__form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,9 +21,7 @@
 
 .create-sticker__style-inputs-container {
   display: flex;
-  width: 60%;
-  position: relative;
-  top: -15px;
+  width: 100%;
 }
 
 .sticker__preview {
@@ -36,10 +31,11 @@
   gap: 5px;
   text-align: center;
   padding: 1rem;
-  width: 226px;
+  width: 100%;
   height: 300px;
   background-repeat: no-repeat;
   background-size: contain;
+  background-position: center;
 
   // mix-blend-mode: multiply;
 
@@ -52,16 +48,15 @@
   color: inherit;
   text-align: center;
   font: inherit;
-  width: 100%;
+  width: 225px;
 }
 
 // Sticker inputs
 input#stickerName {
   font-size: 36px;
   font-weight: 800;
-  width: 70%;
+  width: 100%;
   position: relative;
-  top: -60px;
 
   &::placeholder {
     font-size: 25px;
@@ -95,9 +90,8 @@ input#promo {
 }
 
 .create-sticker__input-user-contacts {
-  position: absolute;
-  bottom: 20px;
-  max-width: 190px;
+  display: flex;
+  flex-direction: column;
 
   input#address {
     font-size: 16px;
@@ -118,9 +112,19 @@ input#promo {
   transform: translateX(0);
 }
 
+@media  screen and (max-width: 1480px) {
+  input#stickerName {
+    width: 90%;
+  }
+  .create-sticker__style-inputs-container {
+    width: 77%;
+  }
+
+}
+
 @media (max-width: 600px) {
-  .create-sticker__form-wrapper {
-    top: 15px;
+  .create-sticker__style-inputs-container {
+    width: 60%;
   }
 
   .sticker__preview {
@@ -148,7 +152,6 @@ input#promo {
   }
 
   .create-sticker__input-user-contacts {
-    bottom: 30px;
 
     input#address {
       font-size: 16px;
@@ -169,20 +172,11 @@ input#promo {
     right: 0;
     transform: translateX(0);
   }
-
-  .create-sticker__style-inputs-container {
-    height: 45px;
-    top: -15px;
-  }
 }
 
 @media (max-width: 400px) {
-  input#stickerName {
-    top: -10px;
-  }
   .create-sticker__style-inputs-container {
     height: 45px;
-    top: 0;
   }
 
   .create-sticker__form {
@@ -192,17 +186,5 @@ input#promo {
   .sticker__preview {
     width: 157px;
     height: 210px;
-  }
-  .sticker__preview {
-    top: 20px;
-  }
-
-  input#companyName {
-    margin-top: -10px;
-  }
-
-  .create-sticker__input-user-contacts {
-    position: absolute;
-    bottom: 10px;
   }
 }

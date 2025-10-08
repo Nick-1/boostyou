@@ -10,7 +10,7 @@ export interface textStyleSelectOptionsItem {
 
 interface StickerColorProps {
     list: textStyleSelectOptionsItem[];
-    defaultValue?: TextStyle;
+    defaultValue: TextStyle;
     onChange: (e: any) => void,
 }
 
