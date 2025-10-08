@@ -5,7 +5,7 @@ export const toStickerItemMapper = (data: StickerFormData): StickerListItem  => 
     return {
         id: new Date().getTime(),
         // @ts-ignore
-        style: { background: ColorCode[data.stickerColor], color: ColorCode[data.textColor] },
+        style: { background: ColorCode[data.stickerColor], color: ColorCode[data.textColor], textStyle: data.textStyle },
         info: {
             name: data.stickerName,
             companyName: data.companyName,

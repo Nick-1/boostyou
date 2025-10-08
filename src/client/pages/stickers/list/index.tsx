@@ -12,7 +12,6 @@ import Container from '@mui/material/Container';
 
 const StickersListPage = () => {
     const { user } = use(UserContext)!;
-
     return (
         <Container maxWidth="xl" sx={{ p: 2 }}>
                 <Grid container spacing={2}>

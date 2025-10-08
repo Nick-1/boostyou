@@ -11,11 +11,13 @@ import { UserContext } from '../../../context/user-context.tsx';
 import { toStickerItemMapper } from './to-sticker-item.mapper.ts';
 
 import StickerColorSelect from './sticker-color-select';
+import TextStyleStickerSelect from './text-style-select';
+import StickerPreviewInputs from './sticker-preview';
+
 import { STICKER_COLOR_SELECT_OPTIONS, TEXT_COLOR_SELECT_OPTIONS, TEXT_STYLE_SELECT_OPTIONS } from './constants.ts';
 
 import './style.scss';
-import TextStyleStickerSelect from './text-style-select';
-import StickerPreview from './sticker-preview';
+
 
 interface CreateStickerFormProps {
     updateFields?: StickerFormData | null;
@@ -137,7 +139,7 @@ const CreateStickerForm = (props: CreateStickerFormProps) => {
                         <FormControl sx={{ mb: 4, mr: 2 }} fullWidth variant="standard">
                             <StickerColorSelect
                                 name="stickerColor"
-                                defaultValue={ColorName.WHITE}
+                                defaultValue={formData.stickerColor}
                                 list={STICKER_COLOR_SELECT_OPTIONS}
                                 onChange={handleSelectChange}
                             />
@@ -145,13 +147,14 @@ const CreateStickerForm = (props: CreateStickerFormProps) => {
                         <FormControl sx={{ mb: 4, mr: 2 }} fullWidth variant="standard">
                             <StickerColorSelect
                                 name="textColor"
-                                defaultValue={ColorName.BLACK}
+                                defaultValue={formData.textColor}
                                 list={TEXT_COLOR_SELECT_OPTIONS}
                                 onChange={handleSelectChange}
                             />
                         </FormControl>
                         <FormControl sx={{ mb: 4, }} fullWidth variant="standard">
                             <TextStyleStickerSelect
+                                defaultValue={formData.textStyle}
                                 list={TEXT_STYLE_SELECT_OPTIONS}
                                 onChange={handleSelectChange}
                             />
@@ -164,10 +167,10 @@ const CreateStickerForm = (props: CreateStickerFormProps) => {
                             backgroundImage: `url(/sticker/${formData.stickerColor}.png)`,
                             color: formData.textColor,
                             fontWeight: formData.textStyle === 'bold' ? 'bold' : undefined,
-                            fontStyle: formData.textStyle === 'italic' ? 'italic' : undefined,
+                            fontStyle: formData.textStyle === 'italic' ? 'italic' : 'normal',
                         }}
                     >
-                        <StickerPreview
+                        <StickerPreviewInputs
                             onChange={handleChange}
                             data={formData}
                             onClickGenerateQRCodeHandler={onClickGenerateQRCodeHandler}

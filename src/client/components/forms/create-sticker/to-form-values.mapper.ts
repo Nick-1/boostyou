@@ -15,7 +15,9 @@ export const toFormValuesMapper = (data?: StickerListItem ): StickerFormData | n
             // @ts-ignore
             stickerColor:  ColorHex[data.style.background],
             // @ts-ignore
-            textColor: ColorHex[data.style.color]
+            textColor: ColorHex[data.style.color],
+            // @ts-ignore
+            textStyle: data.style.textStyle,
         }
     }
 

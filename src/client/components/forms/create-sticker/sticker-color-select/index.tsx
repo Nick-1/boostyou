@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { InputLabel, Select } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 
@@ -14,7 +14,7 @@ export interface colorSelectOptionsItem {
 interface StickerColorProps {
     list: colorSelectOptionsItem[];
     name: string;
-    defaultValue?: ColorName;
+    defaultValue: ColorName;
     onChange: (e: any) => void,
 }
 
@@ -25,7 +25,11 @@ interface ColorProps {
 
 const StickerColorSelect = (props: StickerColorProps) => {
     const { list, name, defaultValue, onChange } = props;
-    const [color, setColor] = useState<ColorProps>({ value: defaultValue || ColorName.WHITE, name });
+    const [color, setColor] = useState<ColorProps>({ value: defaultValue, name });
+
+    useEffect(() => {
+        setColor(prev => ({ ...prev, value: defaultValue }));
+    }, [defaultValue]);
 
     const handleChange = (e: any) => {
         const newValue = e.target.value as string;
@@ -48,7 +52,7 @@ const StickerColorSelect = (props: StickerColorProps) => {
             >
                 {
                     list.map((item) => (
-                        <MenuItem value={item.value}>
+                        <MenuItem key={item.value} value={item.value}>
                             <ColorMarker color={item.markerColor} label={item.label} />
                         </MenuItem>
                     ))

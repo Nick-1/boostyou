@@ -9,9 +9,9 @@ export interface StickerFormData {
     service?: string;
     promo?: string;
     discount?: string;
-    stickerColor?: ColorName;
-    textColor?: ColorName;
-    textStyle?: string;
+    stickerColor: ColorName;
+    textColor: ColorName;
+    textStyle: string;
 }
 
 export interface StickerListItem {

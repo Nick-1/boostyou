@@ -92,24 +92,6 @@ const stickersList: StickerListItem[] = [
             address: 'Address Florida NA 2',
         }
     },
-    {
-        id: 6,
-        style: {
-            background: ColorCode.BLACK,
-            color: ColorCode.WHITE,
-            textStyle: TextStyle.NORMAL
-        },
-        info: {
-            name: 'Sticker 6',
-            companyName: 'Company Name',
-            service: 'Service text',
-            discount: 'SAVE 20%',
-            promo: 'Promo',
-            qrcode: 'https://boostyou.us',
-            phone: '+1 111 555 444',
-            address: 'Address Florida NA 2',
-        }
-    },
 ];
 
 export const DemoUser: User = {

@@ -22,7 +22,7 @@ export const STICKER_COLOR_SELECT_OPTIONS: colorSelectOptionsItem[] = [
     {
         value: ColorName.BLUE,
         markerColor: ColorCode.BLUE,
-        label: 'White',
+        label: 'Blue',
     },
     {
         value: ColorName.ORANGE,

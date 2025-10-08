@@ -10,7 +10,7 @@ interface StickerPreviewProps {
     onClickGenerateQRCodeHandler: (link: string) => void
 }
 
-const StickerPreview = (props: StickerPreviewProps) => {
+const StickerPreviewInputs = (props: StickerPreviewProps) => {
     const { data, onChange, onClickGenerateQRCodeHandler } = props;
     const {
         companyName = '',
@@ -96,4 +96,4 @@ const StickerPreview = (props: StickerPreviewProps) => {
     )
 }
 
-export default memo(StickerPreview);
+export default memo(StickerPreviewInputs);
