@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useMatch } from 'react-router';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -38,12 +37,8 @@ const Header = () => {
         setAnchorElUser(null);
     };
 
-    const isStickerCreatePage = !!useMatch("/stickers/create");
-    const isStickerUpdatePage = !!useMatch("/stickers/update/:stickerId");
-    const isFixedHeader = isStickerCreatePage || isStickerUpdatePage;
-
     return (
-        <AppBar position={isFixedHeader ? "fixed" : "static"}>
+        <AppBar className="header" position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Box className="header__logo desktop" sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>

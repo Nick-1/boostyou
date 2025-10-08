@@ -26,7 +26,7 @@ const HomePage = () => {
     }, [images.length]);
 
     return (
-        <Container className="home-page-container" maxWidth="xl">
+        <Container className="home-page-container full-screen-page-container" maxWidth="xl">
             <Grid className="home-page-grid-wrapper" container spacing={2}>
                 <Grid className="home-moto" size={{ xs: 12, sm: 12, md: 6, lg: 6 }}>
                     <Typography

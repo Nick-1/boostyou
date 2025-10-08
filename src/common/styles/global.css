@@ -6,3 +6,8 @@ body {
   font-size: 16px;
   background-color: var(--color-bg);
 }
+
+.full-screen-page-container {
+  width: 100vw;
+  height: calc(100vh - var(--header-height));
+}

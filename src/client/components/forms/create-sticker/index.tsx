@@ -1,19 +1,21 @@
 import {use, useRef, useState} from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Box, FormControl } from '@mui/material';
 import StickyNote2Icon from '@mui/icons-material/StickyNote2';
 import EditIcon from '@mui/icons-material/Edit';
 import Button from '@mui/material/Button';
 
-import ColorMarker from '../../color-marker';
-import QRCodeModal from '../qr-code-modal';
-import { ColorCode, ColorName, TextStyle } from '../../../enum';
+import { ColorName, TextStyle } from '../../../enum';
 import type { StickerFormData } from '../../../types';
 import { UserContext } from '../../../context/user-context.tsx';
-
 import { toStickerItemMapper } from './to-sticker-item.mapper.ts';
 
+import StickerColorSelect from './sticker-color-select';
+import { STICKER_COLOR_SELECT_OPTIONS, TEXT_COLOR_SELECT_OPTIONS, TEXT_STYLE_SELECT_OPTIONS } from './constants.ts';
+
 import './style.scss';
+import TextStyleStickerSelect from './text-style-select';
+import StickerPreview from './sticker-preview';
 
 interface CreateStickerFormProps {
     updateFields?: StickerFormData | null;
@@ -117,7 +119,7 @@ const CreateStickerForm = (props: CreateStickerFormProps) => {
     }
 
     return (
-        <div className="create-sticker__container">
+        <>
             <div className="create-sticker__form-wrapper">
                 <form ref={formRef} className="create-sticker__form">
                     <input
@@ -133,146 +135,43 @@ const CreateStickerForm = (props: CreateStickerFormProps) => {
 
                     <Box className="create-sticker__style-inputs-container">
                         <FormControl sx={{ mb: 4, mr: 2 }} fullWidth variant="standard">
-                            <InputLabel id="sticker-color-label">Sticker color</InputLabel>
-                            <Select
-                                labelId="sticker-color-label"
-                                id="stickerColor"
+                            <StickerColorSelect
                                 name="stickerColor"
-                                size="small"
-                                value={formData.stickerColor}
+                                defaultValue={ColorName.WHITE}
+                                list={STICKER_COLOR_SELECT_OPTIONS}
                                 onChange={handleSelectChange}
-                                label="Sticker color"
-                            >
-                                <MenuItem value={ColorName.WHITE}>
-                                    <ColorMarker color={ColorCode.WHITE} label="White" />
-                                </MenuItem>
-                                <MenuItem value={ColorName.RED}>
-                                    <ColorMarker color={ColorCode.RED} label="Red" />
-                                </MenuItem>
-                                <MenuItem value={ColorName.GREEN}>
-                                    <ColorMarker color={ColorCode.GREEN} label="Green" />
-                                </MenuItem>
-                                <MenuItem value={ColorName.BLUE}>
-                                    <ColorMarker color={ColorCode.BLUE} label="Blue" />
-                                </MenuItem>
-                                <MenuItem value={ColorName.ORANGE}>
-                                    <ColorMarker color={ColorCode.ORANGE} label="Orange" />
-                                </MenuItem>
-                            </Select>
+                            />
                         </FormControl>
                         <FormControl sx={{ mb: 4, mr: 2 }} fullWidth variant="standard">
-                            <InputLabel id="text-color-label">Text color</InputLabel>
-                            <Select
-                                labelId="text-color-label"
-                                id="textColor"
+                            <StickerColorSelect
                                 name="textColor"
-                                size="small"
-                                value={formData.textColor}
+                                defaultValue={ColorName.BLACK}
+                                list={TEXT_COLOR_SELECT_OPTIONS}
                                 onChange={handleSelectChange}
-                                label="Text color"
-                            >
-                                <MenuItem value={ColorName.BLACK}>
-                                    <ColorMarker color={ColorCode.BLACK} label="Black" />
-                                </MenuItem>
-                                <MenuItem value={ColorName.WHITE}>
-                                    <ColorMarker color={ColorCode.WHITE} label="White" />
-                                </MenuItem>
-                            </Select>
+                            />
                         </FormControl>
                         <FormControl sx={{ mb: 4, }} fullWidth variant="standard">
-                            <InputLabel id="text-style-label">Text style</InputLabel>
-                            <Select
-                                labelId="text-style-label"
-                                id="textStyle"
-                                name="textStyle"
-                                size="small"
-                                value={formData.textStyle}
+                            <TextStyleStickerSelect
+                                list={TEXT_STYLE_SELECT_OPTIONS}
                                 onChange={handleSelectChange}
-                                label="Text style"
-                            >
-                                <MenuItem value={TextStyle.NORMAL}>Normal</MenuItem>
-                                <MenuItem value={TextStyle.ITALIC}>Italic</MenuItem>
-                            </Select>
+                            />
                         </FormControl>
                     </Box>
 
                     <div
                         className="sticker__preview"
                         style={{
-                             backgroundImage: `url(/sticker/${formData.stickerColor}.png)`,
+                            backgroundImage: `url(/sticker/${formData.stickerColor}.png)`,
                             color: formData.textColor,
                             fontWeight: formData.textStyle === 'bold' ? 'bold' : undefined,
                             fontStyle: formData.textStyle === 'italic' ? 'italic' : undefined,
                         }}
                     >
-                        <input
-                            id="companyName"
-                            maxLength={12}
-                            className="create-sticker__input"
-                            name="companyName"
-                            placeholder="Your Company"
-                            value={formData.companyName}
+                        <StickerPreview
                             onChange={handleChange}
-                            required
+                            data={formData}
+                            onClickGenerateQRCodeHandler={onClickGenerateQRCodeHandler}
                         />
-
-                        <input
-                            id="service"
-                            maxLength={16}
-                            className="create-sticker__input"
-                            name="service"
-                            placeholder="Your Service"
-                            value={formData.service}
-                            onChange={handleChange}
-                        />
-
-                        <input
-                            id="discount"
-                            maxLength={12}
-                            className="create-sticker__input"
-                            name="discount"
-                            placeholder="Your Discount"
-                            value={formData.discount}
-                            onChange={handleChange}
-                        />
-
-                        <input
-                            id="promo"
-                            maxLength={20}
-                            className="create-sticker__input"
-                            name="promo"
-                            placeholder="Your Promo"
-                            value={formData.promo}
-                            onChange={handleChange}
-                        />
-
-                        <QRCodeModal
-                            updateLinkField={formValues?.qrCodeLink}
-                            onClickCreateHandler={onClickGenerateQRCodeHandler}
-                        />
-
-                        <Box className="create-sticker__input-user-contacts">
-                            <input
-                                id="address"
-                                maxLength={18}
-                                className="create-sticker__input"
-                                name="address"
-                                placeholder="Your address"
-                                value={formData.address}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                id="phone"
-                                maxLength={16}
-                                type="tel"
-                                className="create-sticker__input"
-                                name="phone"
-                                placeholder="Your phone"
-                                value={formData.phone}
-                                onChange={handleChange}
-                            />
-                        </Box>
                     </div>
                 </form>
             </div>
@@ -280,7 +179,7 @@ const CreateStickerForm = (props: CreateStickerFormProps) => {
             <Box className="create-sticker__submit-container">
                 { manageSubmitButton() }
             </Box>
-        </div>
+        </>
     )
 }
 
