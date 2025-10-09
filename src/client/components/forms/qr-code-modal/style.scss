@@ -57,6 +57,7 @@
   .qr-code-modal-container {
     width: 100px;
     height: 74px;
+    align-items: start;
   }
 
   .qr-code-modal__actions {
@@ -69,6 +70,9 @@
 }
 
 @media (max-width: 400px) {
+  .qr-code-modal-container {
+    align-items: start;
+  }
   .qr-code-modal__actions {
     scale: 0.7;
   }
