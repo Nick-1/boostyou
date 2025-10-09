@@ -14,7 +14,7 @@ body {
 
 @media screen and (max-width: 900px) and (orientation: landscape) {
   body::before {
-    content: "Please use the site in portrait mode 📱";
+    content: "ХУЙ ПАКА 📱";
     display: flex;
     align-items: center;
     justify-content: center;
