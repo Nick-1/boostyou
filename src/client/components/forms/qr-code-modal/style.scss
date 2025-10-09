@@ -2,7 +2,6 @@
   width: 115px;
   height: 115px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -51,28 +50,27 @@
 }
 
 @media (max-width: 600px) {
+  .QR-code-modal__container {
+    width: 340px;
+  }
+
   .qr-code-modal-container {
     width: 100px;
     height: 74px;
+    align-items: start;
   }
 
   .qr-code-modal__actions {
     scale: 0.7;
-    top: -8px
   }
   .qr-code-modal__create {
     scale: 1;
-    top: 13px;
   }
 }
 
 @media (max-width: 400px) {
   .qr-code-modal__actions {
     scale: 0.7;
-  }
-
-  .qr-code-modal__actions {
-    top: -12px;
   }
   .qr-code-modal__create {
     top: 10px;

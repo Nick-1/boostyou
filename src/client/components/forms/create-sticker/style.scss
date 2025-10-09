@@ -106,8 +106,6 @@ input#promo {
   position: absolute;
   width: 100%;
   bottom: 0;
-  right: 0;
-  transform: translateX(0);
 }
 
 @media screen and (max-width: 1480px) {
@@ -152,18 +150,21 @@ input#promo {
 }
 
 @media (max-width: 600px) {
+  .create-sticker__input {
+    padding: 2px;
+  }
+
   .create-sticker__style-inputs-container {
     width: 60%;
   }
-
   .sticker__preview {
     width: 170px;
     height: 245px;
     gap: 2px;
   }
   input#stickerName {
-    font-size: 30px;
-    top: -25px;
+    font-size: 25px;
+    width: 74%;
   }
   input#companyName {
     font-size: 22px;
@@ -181,7 +182,6 @@ input#promo {
   }
 
   .create-sticker__input-user-contacts {
-
     input#address {
       font-size: 16px;
     }
@@ -201,19 +201,28 @@ input#promo {
     right: 0;
     transform: translateX(0);
   }
+
+  .sticker__preview {
+    margin-top: 10px;
+  }
 }
 
 @media (max-width: 400px) {
   .create-sticker__style-inputs-container {
     height: 45px;
   }
-
+  .create-sticker__input {
+    padding: 0;
+  }
   .create-sticker__form {
     background-position: center 50px;
   }
-  
   .sticker__preview {
     width: 157px;
     height: 210px;
+  }
+  input#stickerName {
+    font-size: 22px;
+    width: 74%;
   }
 }
