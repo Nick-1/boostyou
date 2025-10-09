@@ -31,13 +31,13 @@ body {
 
 @media (max-width: 600px) {
   .full-screen-page-container {
-    height: calc(100vh - var(--mobile-header-height));
+    height: calc(100vh - 104px);
   }
 }
 
 @media (max-width: 400px) {
   .full-screen-page-container {
-    height: calc(100vh - var(--mobile-header-height));
+    height: calc(100vh - 145px);
   }
 }
 
