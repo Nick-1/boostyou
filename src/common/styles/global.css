@@ -12,12 +12,6 @@ body {
   height: calc(100vh - var(--header-height));
 }
 
-@media (max-width: 600px) {
-  .full-screen-page-container {
-    height: calc(100vh - var(--mobile-header-height));
-  }
-}
-
 @media screen and (max-width: 900px) and (orientation: landscape) {
   body::before {
     content: "Please use the site in portrait mode 📱";
@@ -32,6 +26,18 @@ body {
     text-align: center;
     z-index: 9999;
     padding: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .full-screen-page-container {
+    height: calc(100vh - var(--mobile-header-height));
+  }
+}
+
+@media (max-width: 400px) {
+  .full-screen-page-container {
+    height: calc(100vh - var(--mobile-header-height));
   }
 }
 
