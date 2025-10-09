@@ -1,6 +1,10 @@
 .qr-code-modal-container {
-  width: 120px;
-  height: 114px;
+  width: 115px;
+  height: 115px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .QR-code-modal__container {
@@ -30,9 +34,20 @@
   position: absolute;
 }
 
-.qr-code-modal__create {
-  position: relative;
-  top: 30px;
+@media screen and (max-width: 1400px) {
+  .qr-code-modal__create {
+    scale: 1.2;
+  }
+  .qr-code-modal-container {
+    width: 100px;
+    height: 100px;
+  }
+
+  .qr-code-modal__actions {
+    svg {
+      scale: 0.8;
+    }
+  }
 }
 
 @media (max-width: 600px) {

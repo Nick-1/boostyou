@@ -21,7 +21,7 @@
 
 .create-sticker__style-inputs-container {
   display: flex;
-  width: 100%;
+  width: 95%;
 }
 
 .sticker__preview {
@@ -36,9 +36,6 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-
-  // mix-blend-mode: multiply;
-
   position: relative;
 }
 
@@ -57,6 +54,7 @@ input#stickerName {
   font-weight: 800;
   width: 100%;
   position: relative;
+  bottom: 2rem;
 
   &::placeholder {
     font-size: 25px;
@@ -112,14 +110,45 @@ input#promo {
   transform: translateX(0);
 }
 
-@media  screen and (max-width: 1480px) {
+@media screen and (max-width: 1480px) {
   input#stickerName {
     width: 90%;
   }
   .create-sticker__style-inputs-container {
     width: 77%;
   }
+}
 
+@media screen and (max-width: 1400px) {
+  .create-sticker__style-inputs-container {
+    width: 70%;
+  }
+  .sticker__preview {
+    height: 255px;
+  }
+  .create-sticker__input {
+    width: 190px;
+  }
+
+  input#stickerName {
+    width: 80%;
+    bottom: 1rem;
+  }
+  input#discount, input#companyName {
+    font-size: 20px;
+  }
+  input#service, input#promo {
+    font-size: 16px;
+  }
+  .create-sticker__input-user-contacts {
+    input#address {
+      font-size: 15px;
+    }
+
+    input#phone {
+      font-size: 15px;
+    }
+  }
 }
 
 @media (max-width: 600px) {
