@@ -4,12 +4,14 @@ import { UserProvider } from './client/context/user-context';
 
 import HomePage from './client/pages/home';
 import CreateStickerPage from './client/pages/stickers/create';
-import Header from './client/layout/header';
+import UpdateStickerPage from './client/pages/stickers/update';
 import StickersListPage from './client/pages/stickers/list';
+import MapPage from './client/pages/map';
+
+import Header from './client/layout/header';
 
 import theme from './theme';
 import { DemoUser } from './client/fake-data/user.ts';
-import UpdateStickerPage from './client/pages/stickers/update';
 
 const Layout = () => (
     <>
@@ -34,6 +36,7 @@ function App() {
                       <Route path="create" element={<CreateStickerPage />} />
                       <Route path="update/:stickerId" element={<UpdateStickerPage />} />
                   </Route>
+                  <Route path="map" element={<MapPage />} />
               </Route>
           </Routes>
       </BrowserRouter>

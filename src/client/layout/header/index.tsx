@@ -12,10 +12,26 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { Link } from 'react-router';
 
 import './style.scss';
 
-const pages = ['My stickers'];
+interface PagesList {
+    label: string;
+    path: string;
+}
+
+const pages: PagesList[] = [
+    {
+        label: 'My stickers',
+        path: '/stickers/list',
+    },
+    {
+        label: 'Map',
+        path: '/map',
+    },
+];
+
 const settings = ['Logout'];
 
 const Header = () => {
@@ -42,7 +58,9 @@ const Header = () => {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Box className="header__logo desktop" sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
-                        <img src="/logo-white.png" alt="Boostyou logo"/>
+                        <Link to="/">
+                            <img src="/logo-white.png" alt="Boostyou logo"/>
+                        </Link>
                     </Box>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -73,32 +91,42 @@ const Header = () => {
                             sx={{ display: { xs: 'block', md: 'none' } }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+                                <MenuItem key={page.label} onClick={handleCloseNavMenu}>
+                                    <Typography
+                                        sx={{ textAlign: 'center' }}
+                                        component={Link}
+                                        to={page.path}
+                                    >
+                                        {page.label}
+                                    </Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
                     </Box>
 
                     <Box className="header__logo mobile" sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}>
-                        <img src="/logo-white.png" alt="Boostyou logo"/>
+                        <Link to="/">
+                            <img src="/logo-white.png" alt="Boostyou logo"/>
+                        </Link>
                     </Box>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                             <Button
-                                key={page}
+                                key={page.label}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
+                                component={Link}
+                                to={page.path}
                             >
-                                {page}
+                                {page.label}
                             </Button>
                         ))}
                     </Box>
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar alt="Remy Sharp" />
                             </IconButton>
                         </Tooltip>
                         <Menu
