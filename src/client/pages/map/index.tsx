@@ -1,12 +1,12 @@
 import { Container } from '@mui/material';
-import Typography from '@mui/material/Typography';
+
+import './style.scss';
+import MapView from '../../components/map';
 
 const MapPage = () => {
     return (
-        <Container maxWidth="xl" sx={{ p: 2 }}>
-            <Typography variant="h1" component="h1">
-                Map Page
-            </Typography>
+        <Container className="full-screen-page-container" maxWidth="xl" sx={{ p: 2 }}>
+            <MapView />
         </Container>
     )
 }

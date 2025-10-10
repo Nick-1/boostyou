@@ -35,9 +35,4 @@ body {
   }
 }
 
-@media (max-width: 400px) {
-  .full-screen-page-container {
-    height: calc(100vh - 145px);
-  }
-}
 

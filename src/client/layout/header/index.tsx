@@ -26,10 +26,10 @@ const pages: PagesList[] = [
         label: 'My stickers',
         path: '/stickers/list',
     },
-    {
-        label: 'Map',
-        path: '/map',
-    },
+    // {
+    //     label: 'Map',
+    //     path: '/map',
+    // },
 ];
 
 const settings = ['Logout'];
