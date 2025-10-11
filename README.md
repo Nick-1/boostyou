@@ -68,11 +68,9 @@ export default defineConfig([
 ])
 ```
 # Web debug with chrome and android (USB way)
- - install adb. `brew install android-platform-tools`
  - turn on USB debug on the phone
  - connect phone to the computer
- - in terminal `npm run dev:mobile`
  - go to http://localhost:5173 on the phone
- - open `chrome://inspect/#devices` on the computer
+ - open `chrome://inspect/#devices` on the computer and provide `port: 5173 localhost:5173` in port forwarding
  - find __debug__ link and click
  - enjoy
