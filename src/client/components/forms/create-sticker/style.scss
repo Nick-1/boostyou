@@ -153,6 +153,9 @@ input#promo {
   .create-sticker__input {
     padding: 2px;
   }
+  .create-sticker__form-wrapper {
+    height: 650px;
+  }
 
   .create-sticker__style-inputs-container {
     width: 60%;
@@ -208,6 +211,10 @@ input#promo {
 }
 
 @media (max-width: 400px) {
+  .create-sticker__form-wrapper {
+    height: 585px;
+  }
+
   .create-sticker__style-inputs-container {
     height: 45px;
   }

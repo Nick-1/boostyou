@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link, useMatch } from 'react-router';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -12,7 +13,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router';
 
 import './style.scss';
 
@@ -53,8 +53,12 @@ const Header = () => {
         setAnchorElUser(null);
     };
 
+    const isStickerCreatePage = !!useMatch("/stickers/create");
+    const isStickerUpdatePage = !!useMatch("/stickers/update/:stickerId");
+    const isFixedHeader = isStickerCreatePage || isStickerUpdatePage;
+
     return (
-        <AppBar className="header" position="relative" sx={{ zIndex: 2 }}>
+        <AppBar className="header" position={isFixedHeader ? "fixed" : "static"} sx={{ zIndex: 2 }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Box className="header__logo desktop" sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// @ts-ignore
 import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 
@@ -19,7 +18,7 @@ type LatLng = { lat: number; lng: number };
 
 function ClickToAddMarker({ onAdd }: { onAdd: (p: LatLng) => void }) {
     useMapEvents({
-        click(e: any) {
+        click(e) {
             onAdd({ lat: e.latlng.lat, lng: e.latlng.lng });
         },
     });
@@ -35,7 +34,6 @@ export default function MapView() {
     return (
         <Box sx={{ height: '100vh', width: '100%' }}>
             <MapContainer
-                // @ts-ignore
                 center={[center.lat, center.lng]}
                 zoom={12}
                 scrollWheelZoom
@@ -44,13 +42,11 @@ export default function MapView() {
             >
                 {/* Безкоштовні тайли OSM (для легкого трафіку) */}
                 <TileLayer
-                    // @ts-ignore
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 <ClickToAddMarker onAdd={(p) => setMarkers((m) => [...m, p])} />
                 {markers.map((m, i) => (
-                    // @ts-ignore
                     <Marker key={i} position={[m.lat, m.lng]} icon={defaultIcon}>
                         <Popup>Маркер #{i + 1}<br/>({m.lat.toFixed(5)}, {m.lng.toFixed(5)})</Popup>
                     </Marker>
