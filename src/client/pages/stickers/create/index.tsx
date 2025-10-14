@@ -8,7 +8,7 @@ const CreateStickerPage = () => {
     return (
         <Container
             className="full-screen-page-container"
-            sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: "center" }}
+            sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: "center", width: '100vw' }}
             maxWidth="xl"
         >
             <CreateStickerForm />

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 
-import { Box } from '@mui/material';
+import './style.scss';
 
 const defaultIcon = new L.Icon({
     iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
@@ -26,32 +26,30 @@ function ClickToAddMarker({ onAdd }: { onAdd: (p: LatLng) => void }) {
 }
 
 export default function MapView() {
-    const [center] = useState<LatLng>({ lat: 50.4501, lng: 30.5234 }); // Київ
+    const [center] = useState<LatLng>({ lat: 26.0125373, lng: -80.1439554 }); // Київ
     const [markers, setMarkers] = useState<LatLng[]>([
-        { lat: 50.4501, lng: 30.5234 },
+        { lat: 26.0125373, lng: -80.1439554  },
     ]);
 
     return (
-        <Box sx={{ height: '100vh', width: '100%' }}>
-            <MapContainer
-                center={[center.lat, center.lng]}
-                zoom={12}
-                scrollWheelZoom
-                id="map"
-                style={{ height: '100%', width: '100%' }}
-            >
-                {/* Безкоштовні тайли OSM (для легкого трафіку) */}
-                <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                <ClickToAddMarker onAdd={(p) => setMarkers((m) => [...m, p])} />
-                {markers.map((m, i) => (
-                    <Marker key={i} position={[m.lat, m.lng]} icon={defaultIcon}>
-                        <Popup>Маркер #{i + 1}<br/>({m.lat.toFixed(5)}, {m.lng.toFixed(5)})</Popup>
-                    </Marker>
-                ))}
-            </MapContainer>
-        </Box>
+        <MapContainer
+            center={[center.lat, center.lng]}
+            zoom={20}
+            scrollWheelZoom
+            id="map"
+            style={{ height: '100%', width: '100%' }}
+        >
+            {/* Безкоштовні тайли OSM (для легкого трафіку) */}
+            <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <ClickToAddMarker onAdd={(p) => setMarkers((m) => [...m, p])} />
+            {markers.map((m, i) => (
+                <Marker key={i} position={[m.lat, m.lng]} icon={defaultIcon}>
+                    <Popup>Маркер #{i + 1}<br/>({m.lat.toFixed(5)}, {m.lng.toFixed(5)})</Popup>
+                </Marker>
+            ))}
+        </MapContainer>
     );
 }
