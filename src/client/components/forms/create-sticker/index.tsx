@@ -75,7 +75,7 @@ const CreateStickerForm = (props: CreateStickerFormProps) => {
         }
 
         addSticker(toStickerItemMapper(formData));
-        navigate('/stickers/list');
+        navigate('/order/create');
     };
 
     const updateHandler = () => {

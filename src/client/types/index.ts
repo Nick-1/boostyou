@@ -38,3 +38,14 @@ export interface User {
     name: string;
     stickersList: StickerListItem[];
 }
+
+export interface CoffeePlace {
+    id: number,
+    ownerId: number;
+    name: string,
+    address: string
+    location: {
+        lat: number,
+        lng: number
+    }
+}

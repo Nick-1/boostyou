@@ -1,5 +1,11 @@
+.color-marker__container {
+  display: flex;
+  align-items: center;
+}
+
 .color-circle {
   display: inline-block;
+  min-width: 15px;
   width: 15px;
   height: 15px;
   background-color: #000;
