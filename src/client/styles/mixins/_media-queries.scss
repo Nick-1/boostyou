@@ -1,0 +1,17 @@
+$breakpoints: (
+    "1920px": 1920px,
+    "1680px": 1680px,
+    "1480px": 1480px,
+    "1400px": 1400px,
+    "1024px": 1024px,
+    "600px": 600px,
+    "400px": 400px,
+);
+
+@mixin respond($device) {
+  $size: map-get($breakpoints, $device);
+
+  @media (max-width: $size) {
+    @content;
+  }
+}

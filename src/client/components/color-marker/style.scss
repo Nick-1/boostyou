@@ -1,6 +1,9 @@
 .color-marker__container {
   display: flex;
   align-items: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .color-circle {

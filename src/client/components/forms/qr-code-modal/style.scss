@@ -1,9 +1,20 @@
+@use '../../../styles/mixins/media-queries' as mq;
+
 .qr-code-modal-container {
   width: 115px;
   height: 115px;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @include mq.respond("1400px") {
+    width: 100px;
+    height: 74px;
+  }
+
+  @include mq.respond("400px") {
+    align-items: start;
+  }
 }
 
 .QR-code-modal__container {
@@ -15,6 +26,10 @@
   background-color: #fff;
   border-radius: 6px;
   padding: 15px;
+
+  @include mq.respond("600px") {
+    width: 340px;
+  }
 }
 
 .qr-code-modal__actions {
@@ -23,60 +38,25 @@
   height: 100%;
   top: 5px;
   mix-blend-mode: multiply;
+
+  @include mq.respond("1400px") {
+    scale: 0.7;
+    top: -8px;
+  }
 }
 
 .qr-code-modal__create {
   scale: 1.5;
+
+  @include mq.respond("1400px") {
+    scale: 1;
+  }
+
+  @include mq.respond("400px") {
+    top: 10px;
+  }
 }
 
 .edit-qr-code__button {
   position: absolute;
-}
-
-@media screen and (max-width: 1400px) {
-  .qr-code-modal__create {
-    scale: 1.2;
-  }
-  .qr-code-modal-container {
-    width: 100px;
-    height: 100px;
-  }
-
-  .qr-code-modal__actions {
-    svg {
-      scale: 0.8;
-    }
-  }
-}
-
-@media (max-width: 600px) {
-  .QR-code-modal__container {
-    width: 340px;
-  }
-
-  .qr-code-modal-container {
-    width: 100px;
-    height: 74px;
-  }
-
-  .qr-code-modal__actions {
-    scale: 0.7;
-    top: -8px;
-  }
-  .qr-code-modal__create {
-    scale: 1;
-  }
-}
-
-@media (max-width: 400px) {
-  .qr-code-modal-container {
-    align-items: start;
-  }
-  .qr-code-modal__actions {
-    scale: 0.7;
-  }
-  .qr-code-modal__create {
-    top: 10px;
-    scale: 1.1;
-  }
 }
