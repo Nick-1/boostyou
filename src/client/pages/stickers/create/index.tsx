@@ -7,7 +7,13 @@ import './style.scss';
 const CreateStickerPage = () => {
     return (
         <Container
-            sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: "center", width: '100vw' }}
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: "center",
+                width: '100vw'
+        }}
             maxWidth="xl"
         >
             <CreateStickerForm />

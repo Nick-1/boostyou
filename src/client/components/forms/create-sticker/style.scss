@@ -11,6 +11,7 @@
   align-items: center;
   justify-content: center;
 
+
   @include mq.respond("1680px") {
     height: 800px;
   }
@@ -19,15 +20,15 @@
     height: 600px;
   }
 
-  @include mq.respond("1024px") {
+  @include mq.respond("1032px") {
     height: 1000px;
   }
 
-  @include mq.respond("600px") {
+  @include mq.respond("440px") {
     height: 650px;
   }
 
-  @include mq.respond("400px") {
+  @include mq.respond("375px") {
     height: 585px;
   }
 }
@@ -39,12 +40,12 @@
   justify-content: center;
   position: relative;
 
-  @include mq.respond("600px") {
+  @include mq.respond("440px") {
     height: 400px;
     background-position: center 50px;
   }
 
-  @include mq.respond("400px") {
+  @include mq.respond("375px") {
     background-position: center 50px;
   }
 }
@@ -61,15 +62,15 @@
     width: 60%;
   }
 
-  @include mq.respond("1024px") {
+  @include mq.respond("1032px") {
     width: 95%;
   }
 
-  @include mq.respond("600px") {
+  @include mq.respond("440px") {
     width: 85%;
   }
 
-  @include mq.respond("400px") {
+  @include mq.respond("375px") {
     height: 45px;
   }
 }
@@ -93,22 +94,32 @@
     gap: 2px;
   }
 
-  @include mq.respond("1024px") {
+  @include mq.respond("1032px") {
     width: 100%;
     height: 300px;
     gap: 5px;
   }
 
-  @include mq.respond("600px") {
-    width: 170px;
-    height: 245px;
-    gap: 2px;
-    margin-top: 10px;
+  @include mq.respondLandscape("1032px") {
+    gap: 0;
   }
 
-  @include mq.respond("400px") {
+  @include mq.respond("440px") {
+    width: 170px;
+    height: 245px;
+    gap: 1px;
+    margin-top: -10px;
+  }
+
+  @media screen and (max-width: 410px) {
+    margin-top: -20px;
+  }
+
+  @include mq.respond("375px") {
     width: 157px;
     height: 210px;
+    margin-top: 10px;
+    gap: 2px;
   }
 }
 
@@ -124,16 +135,21 @@
     width: 170px;
   }
 
-  @include mq.respond("1024px") {
+  @include mq.respond("1032px") {
     width: 225px;
   }
 
-  @include mq.respond("600px") {
-    font-size: 25px;
-    width: 90%;
+  @include mq.respondLandscape("1032px") {
+    padding: 2px;
   }
 
-  @include mq.respond("400px") {
+  @include mq.respond("440px") {
+    font-size: 25px;
+    width: 90%;
+    padding: 2px;
+  }
+
+  @include mq.respond("375px") {
     padding: 0;
   }
 }
@@ -155,11 +171,12 @@ input#stickerName {
   }
 
   @include mq.respond("1400px") {
-    width: 80%;
-    bottom: 1rem;
+    width: 90%;
+    bottom: 0.5rem;
+    font-size: 22px;
   }
 
-  @include mq.respond("1024px") {
+  @include mq.respond("1032px") {
     width: 100%;
 
     &::placeholder {
@@ -167,14 +184,13 @@ input#stickerName {
     }
   }
 
-  @include mq.respond("600px") {
-    font-size: 25px;
-    width: 74%;
-  }
-
-  @include mq.respond("400px") {
+  @include mq.respond("440px") {
     font-size: 22px;
-    width: 74%;
+    width: 90%;
+
+    &::placeholder {
+      font-size: 25px;
+    }
   }
 }
 
@@ -189,12 +205,12 @@ input#companyName {
       font-size: 20px;
     }
 
-    @include mq.respond("1024px") {
+    @include mq.respond("1032px") {
       font-size: 30px;
     }
 
-    @include mq.respond("600px") {
-      margin-top: 10px;
+    @include mq.respond("440px") {
+      font-size: 21px;
     }
   }
 
@@ -202,7 +218,7 @@ input#companyName {
     font-size: 20px;
   }
 
-  @include mq.respond("600px") {
+  @include mq.respond("440px") {
     margin-top: 10px;
 
   }
@@ -213,7 +229,7 @@ input#service {
   font-weight: 400;
 
   &::placeholder {
-    @include mq.respond("1024px") {
+    @include mq.respond("1032px") {
       font-size: 23px;
     }
   }
@@ -239,11 +255,11 @@ input#promo {
   }
 
   &::placeholder {
-    @include mq.respond("1024px") {
+    @include mq.respond("1032px") {
       font-size: 28px;
     }
 
-    @include mq.respond("600px") {
+    @include mq.respond("440px") {
       font-size: 20px;
     }
   }
@@ -278,7 +294,7 @@ input#promo {
   width: 100%;
   bottom: 0;
 
-  @include mq.respond("600px") {
+  @include mq.respond("440px") {
     width: 100%;
     bottom: 0;
     right: 0;

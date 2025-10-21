@@ -12,7 +12,7 @@
     height: 74px;
   }
 
-  @include mq.respond("400px") {
+  @include mq.respond("375px") {
     align-items: start;
   }
 }
@@ -27,7 +27,7 @@
   border-radius: 6px;
   padding: 15px;
 
-  @include mq.respond("600px") {
+  @include mq.respond("440px") {
     width: 340px;
   }
 }
@@ -52,7 +52,7 @@
     scale: 1;
   }
 
-  @include mq.respond("400px") {
+  @include mq.respond("375px") {
     top: 10px;
   }
 }

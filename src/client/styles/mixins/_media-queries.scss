@@ -1,17 +1,37 @@
+@use "sass:map";
+
 $breakpoints: (
     "1920px": 1920px,
     "1680px": 1680px,
     "1480px": 1480px,
     "1400px": 1400px,
-    "1024px": 1024px,
-    "600px": 600px,
-    "400px": 400px,
+    "1032px": 1032px,
+    "440px": 440px,
+    "375px": 375px,
 );
 
 @mixin respond($device) {
-  $size: map-get($breakpoints, $device);
+  $size: map.get($breakpoints, $device);
 
   @media (max-width: $size) {
     @content;
   }
 }
+
+@mixin respondLandscape($device) {
+  $size: map.get($breakpoints, $device);
+
+  @media (max-height: $size) and (orientation: landscape) {
+    @content;
+  }
+}
+
+
+
+// 375px - iphone 13 mini
+// 400px - iphone 13, 13 pro, 15, 15 pro
+// 410 - iphone 17, 17 pro
+// 430 - iphone 15 pro max
+// 440 - iphone 17 pro max
+// 1032 - ipad landscape
+
