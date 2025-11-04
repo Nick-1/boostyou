@@ -1,22 +1,3 @@
-@use '../../../styles/mixins/media-queries' as mq;
-
-.qr-code-modal-container {
-  width: 115px;
-  height: 115px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  @include mq.respond("1400px") {
-    width: 100px;
-    height: 74px;
-  }
-
-  @include mq.respond("375px") {
-    align-items: start;
-  }
-}
-
 .QR-code-modal__container {
   position: absolute;
   top: 50%;
@@ -26,37 +7,4 @@
   background-color: #fff;
   border-radius: 6px;
   padding: 15px;
-
-  @include mq.respond("440px") {
-    width: 340px;
-  }
-}
-
-.qr-code-modal__actions {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  top: 5px;
-  mix-blend-mode: multiply;
-
-  @include mq.respond("1400px") {
-    scale: 0.7;
-    top: -8px;
-  }
-}
-
-.qr-code-modal__create {
-  scale: 1.5;
-
-  @include mq.respond("1400px") {
-    scale: 1;
-  }
-
-  @include mq.respond("375px") {
-    top: 10px;
-  }
-}
-
-.edit-qr-code__button {
-  position: absolute;
 }

@@ -26,10 +26,6 @@ const pages: PagesList[] = [
         label: 'My stickers',
         path: '/stickers/list',
     },
-    // {
-    //     label: 'Map',
-    //     path: '/map',
-    // },
 ];
 
 const settings = ['Logout'];
@@ -52,10 +48,6 @@ const Header = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-
-    // const isStickerCreatePage = !!useMatch("/stickers/create");
-    // const isStickerUpdatePage = !!useMatch("/stickers/update/:stickerId");
-    // const isFixedHeader = isStickerCreatePage || isStickerUpdatePage;
 
     return (
         <AppBar className="header" position="relative" sx={{ zIndex: 2 }}>

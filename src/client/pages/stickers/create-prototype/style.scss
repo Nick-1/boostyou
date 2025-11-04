@@ -1,0 +1,110 @@
+.page-global-wrapper {
+  overflow: hidden;
+}
+
+.proto-header,
+.proto-footer {
+  height: 65px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+
+  /* просто для прикладу, щоб було видно */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 14px;
+}
+
+/* Обгортка під контент між хедером і футером */
+.redactor-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 130px); /* віднімаємо висоту header + footer */
+  width: 100vw;
+  background: #f5f5f5;
+  overflow: hidden;
+}
+
+/* Контейнер для чашки */
+.coffee-cup-wrapper {
+  position: relative;
+  width: clamp(300px, 70vmin, 900px);
+  aspect-ratio: 1 / 1;
+
+  @media screen and (max-width: 465px) {
+    width: clamp(300px, 1000vmin, 900px);
+  }
+}
+
+/* Картинка чашки */
+.coffee-cup__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Картинка стікера */
+.sticker__image {
+  position: absolute;
+  top: 63%;
+  left: 52%;
+  width: 42%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* Шар форми поверх стікера */
+.sticker__layer {
+  position: absolute;
+  top: 62%;
+  left: 52%;
+  width: 42%;
+  transform: translate(-50%, -50%);
+  gap: 0.8em;
+  padding: 5% 4%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Інпути */
+.sticker-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #111;
+  text-align: center;
+  line-height: 1.15;
+  font-size: clamp(12px, 3.2vmin, 36px);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, sans-serif;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+
+  @supports (-webkit-touch-callout: none) {
+    font-size: clamp(16px, 3.2vmin, 36px);
+  }
+}
+
+.sticker-input--title {
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sticker-input--subtitle {
+  resize: none;
+  min-height: 2.4em;
+  max-height: 6.6em;
+  overflow: auto;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.sticker-input::placeholder {
+  color: rgba(0, 0, 0, 0.35);
+}
