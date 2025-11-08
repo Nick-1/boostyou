@@ -18,12 +18,12 @@ interface QRCodeModalProps {
     updateLinkField?: string
 }
 
-const QRcodeEditButtonStyles = {
-    position: 'absolute',
-    top: '50%',
-    left: '130%',
-    transform: 'translate(-50%, -50%)',
-}
+// const QRcodeEditButtonStyles = {
+//     position: 'absolute',
+//     top: '50%',
+//     left: '130%',
+//     transform: 'translate(-50%, -50%)',
+// }
 
 export default function QRCodeModal(props: QRCodeModalProps) {
     const { onClickCreateHandler, updateLinkField } = props;
@@ -43,7 +43,7 @@ export default function QRCodeModal(props: QRCodeModalProps) {
             return (
                 <div className="qr-code-modal__actions">
                     <QrCode link={link}/>
-                    <Fab sx={QRcodeEditButtonStyles} size="small" aria-label="edit qr code" onClick={handleOpen}>
+                    <Fab className="qr-code-edit-button" size="small" aria-label="edit qr code" onClick={handleOpen}>
                         <EditIcon />
                     </Fab>
                 </div>

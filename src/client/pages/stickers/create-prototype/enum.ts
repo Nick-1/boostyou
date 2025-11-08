@@ -7,3 +7,8 @@ export enum StickerStyle {
     regular = 'regular',
     christmas = 'christmas',
 }
+
+export enum RedactorMode {
+    UPDATE = 'update',
+    CREATE = 'create',
+}

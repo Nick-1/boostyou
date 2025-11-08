@@ -15,7 +15,6 @@ import theme from './theme';
 import { DemoUser } from './client/fake-data/user.ts';
 import PaymentPage from './client/pages/order/payment';
 import PaymentSuccessPage from './client/pages/order/payment-success';
-import CoffeeStickerEditorPage from './client/pages/stickers/create-prototype';
 import Footer from './client/layout/footer';
 
 const Layout = () => (
@@ -30,14 +29,12 @@ const Layout = () => (
     </>
 );
 
-
 function App() {
   return (
       <BrowserRouter>
           <Routes>
               <Route element={<Layout />}>
                   <Route path="/" element={<HomePage />} />
-                  <Route path="/create-prototype" element={<CoffeeStickerEditorPage />} />
                   <Route path="stickers" >
                       <Route path="list" element={<StickersListPage />} />
                       <Route path="create" element={<CreateStickerPage />} />

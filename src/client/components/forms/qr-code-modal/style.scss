@@ -8,3 +8,18 @@
   border-radius: 6px;
   padding: 15px;
 }
+
+.qr-code-modal__actions {
+  position: relative;
+
+  .qr-code-edit-button {
+    position: absolute;
+    top: 50%;
+    transform: translate(20%, -50%);
+  }
+
+  svg.qr-code {
+    width: 70px!important;
+    height: 70px!important;
+  }
+}

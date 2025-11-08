@@ -8,7 +8,6 @@
   background: #fff;
   border-bottom: 1px solid #ddd;
 
-  /* просто для прикладу, щоб було видно */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,12 +15,11 @@
   font-size: 14px;
 }
 
-/* Обгортка під контент між хедером і футером */
 .redactor-page-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 130px); /* віднімаємо висоту header + footer */
+  height: calc(100vh - 130px);
   width: 100vw;
   background: #f5f5f5;
   overflow: hidden;
@@ -34,7 +32,7 @@
   aspect-ratio: 1 / 1;
 
   @media screen and (max-width: 465px) {
-    width: clamp(300px, 1000vmin, 900px);
+    width: clamp(300px, 100vmin, 900px);
   }
 }
 

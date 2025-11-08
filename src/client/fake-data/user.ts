@@ -1,96 +1,66 @@
 import type {StickerListItem, User} from '../types';
-import {ColorCode, TextStyle} from '../enum';
+import { StickerForm } from '../pages/stickers/create-prototype/enum.ts';
 
 const stickersList: StickerListItem[] = [
     {
         id: 1,
-        style: {
-            background: ColorCode.WHITE,
-            color: ColorCode.BLACK,
-            textStyle: TextStyle.NORMAL
-        },
-        info: {
-            name: 'Sticker 1',
-            companyName: 'Company Name',
-            service: 'Service text',
-            discount: 'SAVE 20%',
-            promo: 'Promo',
-            qrcode: 'https://boostyou.us',
-            phone: '+1 111 555 444',
-            address: 'Address Florida NA 2',
-        }
+        title: 'Title Company',
+        highlightedText: 'Super text',
+        promo: 'Discount 20%',
+        qrCodeLink: 'https://google.com',
+        address: 'Address 1117, 7',
+        phone: '+1456 36 23',
+        titleColor: '#111111',
+        highlightedBgColor: '#111111',
+        stickerForm: StickerForm.rectangle,
     },
     {
         id: 2,
-        style: {
-            background: ColorCode.GREEN,
-            color: ColorCode.BLACK,
-            textStyle: TextStyle.NORMAL
-        },
-        info: {
-            name: 'Sticker 2',
-            companyName: 'Company Name',
-            service: 'Service text',
-            discount: 'SAVE 20%',
-            promo: 'Promo',
-            qrcode: 'https://boostyou.us',
-            phone: '+1 111 555 444',
-            address: 'Address Florida NA 2',
-        }
+        title: 'Title Company 2',
+        highlightedText: 'Super text',
+        promo: 'Discount 20%',
+        qrCodeLink: 'https://google.com',
+        address: 'Address 1117, 7',
+        phone: '+1456 36 23',
+        titleColor: '#111111',
+        highlightedBgColor: '#111111',
+        stickerForm: StickerForm.rectangle,
     },
     {
         id: 3,
-        style: {
-            background: ColorCode.RED,
-            color: ColorCode.WHITE,
-            textStyle: TextStyle.NORMAL
-        },
-        info: {
-            name: 'Sticker 3',
-            companyName: 'Company Name',
-            service: 'Service text',
-            discount: 'SAVE 20%',
-            promo: 'Promo',
-            qrcode: 'https://boostyou.us',
-            phone: '+1 111 555 444',
-            address: 'Address Florida NA 2',
-        }
+        title: 'Title Company 3',
+        highlightedText: 'Super text',
+        promo: 'Discount 20%',
+        qrCodeLink: 'https://google.com',
+        address: 'Address 1117, 7',
+        phone: '+1456 36 23',
+        titleColor: '#111111',
+        highlightedBgColor: '#111111',
+        stickerForm: StickerForm.rectangle,
     },
     {
         id: 4,
-        style: {
-            background: ColorCode.BLUE,
-            color: ColorCode.WHITE,
-            textStyle: TextStyle.NORMAL
-        },
-        info: {
-            name: 'Sticker 4',
-            companyName: 'Company Name',
-            service: 'Service text',
-            discount: 'SAVE 20%',
-            promo: 'Promo',
-            qrcode: 'https://boostyou.us',
-            phone: '+1 111 555 444',
-            address: 'Address Florida NA 2',
-        }
+        title: 'Title Company 4',
+        highlightedText: 'Super text',
+        promo: 'Discount 20%',
+        qrCodeLink: 'https://google.com',
+        address: 'Address 1117, 7',
+        phone: '+1456 36 23',
+        titleColor: '#111111',
+        highlightedBgColor: '#111111',
+        stickerForm: StickerForm.rectangle,
     },
     {
         id: 5,
-        style: {
-            background: ColorCode.ORANGE,
-            color: ColorCode.BLACK,
-            textStyle: TextStyle.NORMAL
-        },
-        info: {
-            name: 'Sticker 5',
-            companyName: 'Company Name',
-            service: 'Service text',
-            discount: 'SAVE 20%',
-            promo: 'Promo',
-            qrcode: 'https://boostyou.us',
-            phone: '+1 111 555 444',
-            address: 'Address Florida NA 2',
-        }
+        title: 'Title Company 5',
+        highlightedText: 'Super text',
+        promo: 'Discount 20%',
+        qrCodeLink: 'https://google.com',
+        address: 'Address 1117, 7',
+        phone: '+1456 36 23',
+        titleColor: '#111111',
+        highlightedBgColor: '#111111',
+        stickerForm: StickerForm.rectangle,
     },
 ];
 

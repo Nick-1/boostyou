@@ -71,7 +71,7 @@ const CreateStickerForm = (props: CreateStickerFormProps) => {
 
     const createHandler = () => {
         if (formRef.current && !formRef.current.reportValidity()) {
-            return; // required поля не заповнені
+            return;
         }
 
         addSticker(toStickerItemMapper(formData));
