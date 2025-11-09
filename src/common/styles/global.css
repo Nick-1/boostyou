@@ -14,7 +14,7 @@ body {
 
 .full-screen-page-container {
   height: calc(100vh - 130px);
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .align-items-center {
