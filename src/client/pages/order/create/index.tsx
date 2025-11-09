@@ -1,4 +1,4 @@
-import {use, useRef, useState} from 'react';
+import {use, useEffect, useRef, useState} from 'react';
 import { useNavigate } from 'react-router';
 
 
@@ -11,7 +11,6 @@ import type { CoffeePlace } from '../../../types';
 import MapView from '../../../components/map';
 
 import { UserContext } from '../../../context/user-context.tsx';
-import ColorMarker from '../../../components/color-marker';
 
 import './style.scss';
 
@@ -59,9 +58,15 @@ const OrderPage = () => {
         if (formRef.current && !formRef.current.reportValidity()) {
             return;
         }
-        console.log({ searchValue, searchOption, stickerId, quantity: effectiveQuantity });
+
+        console.info('user', user?.stickersList);
+
         navigate('/order/payment', { state: { effectiveQuantity, PRICE_PER_STICKER } });
     };
+
+    useEffect(() => {
+        console.info('user', user?.stickersList);
+    })
 
     return (
         <Container className="full-screen-page-container align-items-center" maxWidth="xl">
@@ -122,7 +127,7 @@ const OrderPage = () => {
                             </MenuItem>
                             {user?.stickersList.map((s) => (
                               <MenuItem key={s.id} value={s.id}>
-                                  <ColorMarker color={s.style.background} label={s.info.name} />
+                                  {s.name}
                               </MenuItem>
                             ))}
                           </Select>

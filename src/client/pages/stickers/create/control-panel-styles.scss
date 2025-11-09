@@ -23,6 +23,15 @@
   border: 1px solid rgba(0, 0, 0, 0.15);
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &::-webkit-color-swatch-wrapper {
+    padding: 2px;
+  }
+
+  &::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+  }
 }
 
 .color-dot:hover {
@@ -40,3 +49,5 @@
   white-space: nowrap;
   border: 0;
 }
+
+

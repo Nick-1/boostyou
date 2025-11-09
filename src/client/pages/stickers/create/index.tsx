@@ -1,4 +1,4 @@
-import CoffeeStickerEditorPage from '../create-prototype';
+import CoffeeStickerEditorPage from './coffee-sticker-editor.tsx';
 
 import './style.scss';
 

@@ -1,11 +1,11 @@
 export enum StickerForm {
-    circle = 'circle',
-    rectangle = 'rectangle',
+    CIRCLE = 'circle',
+    RECTANGLE = 'rectangle',
 }
 
 export enum StickerStyle {
-    regular = 'regular',
-    christmas = 'christmas',
+    REGULAR = 'regular',
+    CHRISTMAS = 'christmas',
 }
 
 export enum RedactorMode {

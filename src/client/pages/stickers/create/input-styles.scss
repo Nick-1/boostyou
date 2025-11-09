@@ -25,6 +25,18 @@
   }
 }
 
+.sticker-input--name {
+  position: absolute;
+  font-weight: 800;
+  top: 29%;
+  width: 50%;
+  transform: translateX(52%);
+
+  &::placeholder {
+    color: #4a4a4a !important;
+  }
+}
+
 .sticker-input--highlighted-text {
   color: #fff;
 
@@ -32,7 +44,6 @@
     color: #fff!important;
   }
 }
-
 
 .sticker-input--phone,
 .sticker-input--address

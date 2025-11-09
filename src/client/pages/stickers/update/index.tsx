@@ -1,8 +1,9 @@
 import { use } from 'react';
 import { useParams } from 'react-router';
 
+import CoffeeStickerEditorPage from '../create/coffee-sticker-editor.tsx';
+
 import { UserContext } from '../../../context/user-context.tsx';
-import CoffeeStickerEditorPage from '../create-prototype';
 
 const UpdateStickerPage = () => {
     const { user } = use(UserContext)!;

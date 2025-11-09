@@ -1,9 +1,11 @@
+import {StickerForm, StickerStyle} from '../pages/stickers/create/enum.ts';
+
 import type {StickerListItem, User} from '../types';
-import { StickerForm } from '../pages/stickers/create-prototype/enum.ts';
 
 const stickersList: StickerListItem[] = [
     {
         id: 1,
+        name: 'Sticker 1',
         title: 'Title Company',
         highlightedText: 'Super text',
         promo: 'Discount 20%',
@@ -12,10 +14,12 @@ const stickersList: StickerListItem[] = [
         phone: '+1456 36 23',
         titleColor: '#111111',
         highlightedBgColor: '#111111',
-        stickerForm: StickerForm.rectangle,
+        stickerForm: StickerForm.RECTANGLE,
+        stickerStyle: StickerStyle.REGULAR,
     },
     {
         id: 2,
+        name: 'Sticker 2',
         title: 'Title Company 2',
         highlightedText: 'Super text',
         promo: 'Discount 20%',
@@ -24,10 +28,12 @@ const stickersList: StickerListItem[] = [
         phone: '+1456 36 23',
         titleColor: '#111111',
         highlightedBgColor: '#111111',
-        stickerForm: StickerForm.rectangle,
+        stickerForm: StickerForm.RECTANGLE,
+        stickerStyle: StickerStyle.REGULAR,
     },
     {
         id: 3,
+        name: 'Sticker 3',
         title: 'Title Company 3',
         highlightedText: 'Super text',
         promo: 'Discount 20%',
@@ -36,10 +42,12 @@ const stickersList: StickerListItem[] = [
         phone: '+1456 36 23',
         titleColor: '#111111',
         highlightedBgColor: '#111111',
-        stickerForm: StickerForm.rectangle,
+        stickerForm: StickerForm.RECTANGLE,
+        stickerStyle: StickerStyle.REGULAR,
     },
     {
         id: 4,
+        name: 'Sticker 4',
         title: 'Title Company 4',
         highlightedText: 'Super text',
         promo: 'Discount 20%',
@@ -48,10 +56,12 @@ const stickersList: StickerListItem[] = [
         phone: '+1456 36 23',
         titleColor: '#111111',
         highlightedBgColor: '#111111',
-        stickerForm: StickerForm.rectangle,
+        stickerForm: StickerForm.RECTANGLE,
+        stickerStyle: StickerStyle.REGULAR,
     },
     {
         id: 5,
+        name: 'Sticker 5',
         title: 'Title Company 5',
         highlightedText: 'Super text',
         promo: 'Discount 20%',
@@ -60,7 +70,8 @@ const stickersList: StickerListItem[] = [
         phone: '+1456 36 23',
         titleColor: '#111111',
         highlightedBgColor: '#111111',
-        stickerForm: StickerForm.rectangle,
+        stickerForm: StickerForm.RECTANGLE,
+        stickerStyle: StickerStyle.REGULAR,
     },
 ];
 

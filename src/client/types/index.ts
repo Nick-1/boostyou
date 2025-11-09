@@ -1,5 +1,5 @@
 import { ColorName, TextStyle } from '../enum';
-import {StickerForm} from '../pages/stickers/create-prototype/enum.ts';
+import {type StickerForm, StickerStyle} from '../pages/stickers/create/enum.ts';
 
 export interface User {
     id: number;
@@ -12,6 +12,7 @@ export interface StickerListItem extends StickerData{
 }
 
 export interface StickerData {
+    name: string;
     title: string;
     highlightedText: string;
     promo: string;
@@ -21,6 +22,7 @@ export interface StickerData {
     titleColor: string;
     highlightedBgColor: string;
     stickerForm: StickerForm,
+    stickerStyle: StickerStyle,
 }
 
 export interface CoffeePlace {

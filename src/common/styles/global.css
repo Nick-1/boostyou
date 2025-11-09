@@ -13,7 +13,7 @@ body {
 }
 
 .full-screen-page-container {
-  min-height: calc(100vh - var(--header-height));
+  height: calc(100vh - 130px);
   overflow: hidden;
 }
 
@@ -23,21 +23,10 @@ body {
   justify-content: center;
 }
 
-/*@media screen and (max-width: 900px) and (orientation: landscape) {*/
-/*  body::before {*/
-/*    content: "Please use the site in portrait mode 📱";*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*    position: fixed;*/
-/*    inset: 0;*/
-/*    background: #fff;*/
-/*    color: #000;*/
-/*    font-size: 1.2rem;*/
-/*    text-align: center;*/
-/*    z-index: 9999;*/
-/*    padding: 1rem;*/
-/*  }*/
-/*}*/
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 

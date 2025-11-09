@@ -18,13 +18,6 @@ interface QRCodeModalProps {
     updateLinkField?: string
 }
 
-// const QRcodeEditButtonStyles = {
-//     position: 'absolute',
-//     top: '50%',
-//     left: '130%',
-//     transform: 'translate(-50%, -50%)',
-// }
-
 export default function QRCodeModal(props: QRCodeModalProps) {
     const { onClickCreateHandler, updateLinkField } = props;
     const defaultLink = updateLinkField ? updateLinkField : '';
@@ -91,7 +84,6 @@ export default function QRCodeModal(props: QRCodeModalProps) {
                             onClick={() => {
                                 onClickCreateHandler(link);
                                 setTimeout(() => {
-                                    // close modal after generating
                                     setOpen(false);
                                 }, 0);
                             }}

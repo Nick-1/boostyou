@@ -4,10 +4,11 @@ import { useNavigate, useParams } from 'react-router';
 import QRCodeModal from '../../../components/forms/qr-code-modal';
 import { UserContext } from '../../../context/user-context.tsx';
 import type { StickerData } from '../../../types';
+import { CLIENT_ROUTE } from '../../../common/routes.ts';
 
 import { SubmitButton } from './submit-button';
 import { ImageLayout } from './image-layout.tsx';
-import { RedactorMode, StickerForm } from './enum.ts';
+import {RedactorMode, StickerForm, StickerStyle} from './enum.ts';
 
 import './style.scss';
 import './input-styles.scss';
@@ -18,6 +19,7 @@ interface CoffeeStickerEditorPageProps {
 }
 
 const defaultFormValues = {
+    name: '',
     title: '',
     highlightedText: '',
     promo: '',
@@ -26,7 +28,8 @@ const defaultFormValues = {
     phone: '',
     titleColor: '#111111',
     highlightedBgColor: '#000000',
-    stickerForm: StickerForm.rectangle,
+    stickerForm: StickerForm.RECTANGLE,
+    stickerStyle: StickerStyle.REGULAR,
 };
 
 export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props) => {
@@ -63,12 +66,12 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
         }
 
         addSticker({...formData, id});
-        navigate('/order/create');
+        navigate(CLIENT_ROUTE.order.create);
     };
 
     const updateStickerHandler = () => {
         if (!stickerId || !user) {
-            navigate('/stickers/list');
+            navigate(CLIENT_ROUTE.stickers.list);
             return;
         }
 
@@ -80,7 +83,7 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
         const updatedItem = { ...formData, id };
 
         updateSticker(id, updatedItem);
-        navigate('/stickers/list');
+        navigate(CLIENT_ROUTE.stickers.list);
     };
 
     return (
@@ -88,8 +91,22 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
             <div className="coffee-cup-wrapper">
                 <ImageLayout />
 
+                <input
+                    name="name"
+                    maxLength={20}
+                    className="sticker-input sticker-input--name"
+                    value={formData.name}
+                    onChange={inputChangeHandler}
+                    placeholder="Sticker name"
+                    aria-label="Stecker name"
+                    autoComplete="off"
+                    spellCheck={false}
+                    required
+                />
+
                 <div className="sticker__layer">
                     <form ref={formRef}>
+
                         <input
                             name="title"
                             maxLength={12}
@@ -157,7 +174,6 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
                 </div>
 
                 <aside className="control-panel control-panel--vertical">
-                    {/* Коло для кольору Title */}
                     <input
                         type="color"
                         name="titleColor"
@@ -167,7 +183,6 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
                         onChange={onColorChangeHandler}
                     />
 
-                    {/* Коло для фону Highlighted */}
                     <input
                         type="color"
                         name="highlightedBgColor"
