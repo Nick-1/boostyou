@@ -3,19 +3,19 @@ import { Link } from 'react-router';
 
 import { Grid, Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import Container from '@mui/material/Container';
 
 import type { StickerListItem } from '../../../types';
 import { UserContext } from '../../../context/user-context.tsx';
 import { CLIENT_ROUTE } from '../../../common/routes.ts';
 
 import './style.scss';
+import {MainPageContainer} from '../../../layout/main-page-container';
 
 const StickersListPage = () => {
     const { user } = use(UserContext)!;
 
     return (
-        <Container className="full-screen-page-container" maxWidth="xl" sx={{ p: 2 }}>
+        <MainPageContainer>
                 <Grid container spacing={2}>
                     <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
                         <Button
@@ -55,7 +55,7 @@ const StickersListPage = () => {
                         </Grid>
                     ))}
                 </Grid>
-        </Container>
+        </MainPageContainer>
     );
 }
 

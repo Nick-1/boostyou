@@ -1,9 +1,11 @@
-import Container from '@mui/material/Container';
-import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router';
+
+import { Button, Grid, Typography } from '@mui/material';
+
+import { MainPageContainer } from '../../layout/main-page-container';
 
 import './style.scss';
-import {Link} from 'react-router';
 
 const HomePage = () => {
     const images = useMemo(
@@ -26,7 +28,7 @@ const HomePage = () => {
     }, [images.length]);
 
     return (
-        <Container className="home-page-container full-screen-page-container align-items-center" maxWidth="xl">
+        <MainPageContainer className="home-page-container">
             <Grid className="home-page-grid-wrapper" container spacing={2}>
                 <Grid className="home-moto" size={{ xs: 12, sm: 12, md: 6, lg: 6 }}>
                     <Typography
@@ -61,7 +63,7 @@ const HomePage = () => {
                     </div>
                 </Grid>
             </Grid>
-        </Container>
+        </MainPageContainer>
     );
 };
 
