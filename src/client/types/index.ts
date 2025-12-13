@@ -15,6 +15,7 @@ export interface StickerData {
     name: string;
     title: string;
     highlightedText: string;
+    discount: string;
     promo: string;
     qrCodeLink: string;
     address: string;

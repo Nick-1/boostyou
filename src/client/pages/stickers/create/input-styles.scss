@@ -6,7 +6,6 @@
   color: #111;
   text-align: center;
   line-height: 1.15;
-  font-size: clamp(12px, 3.2vmin, 36px);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, sans-serif;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
   padding: 0;
@@ -16,16 +15,8 @@
   }
 }
 
-.sticker-input--title {
-  font-weight: 800;
-
-  &::placeholder {
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-}
-
 .sticker-input--name {
+  font-size: clamp(13px, 3.2vmin, 36px);
   position: absolute;
   font-weight: 800;
   top: 29%;
@@ -37,11 +28,30 @@
   }
 }
 
+.sticker-input--title {
+  font-size: clamp(14px, 3.2vmin, 36px);
+  font-weight: 800;
+
+  &::placeholder {
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}
+
 .sticker-input--highlighted-text {
+  font-size: clamp(12px, 3.2vmin, 25px);
   color: #fff;
+  border-radius: 5px;
+  padding: 5px 0;
 
   &::placeholder {
     color: #fff!important;
+  }
+
+  @media screen and (max-width: 400px) {
+    & {
+      padding: 2px;
+    }
   }
 }
 
@@ -51,6 +61,65 @@
   font-size: clamp(12px, 2.2vmin, 21px);
 }
 
+.sticker-input--address
+{
+  resize: none;
+  overflow: hidden;
+  width: 80%;
+  display: inline-block;
+}
+
 .sticker-input::placeholder {
   color: rgba(0, 0, 0, 0.35);
+}
+
+.discount-input-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+
+  .discount-input-wrapper__label {
+    font-size: clamp(18px, 3.2vmin, 36px);
+    font-weight: 500;
+  }
+
+  .sticker-input--discount {
+    font-size: clamp(18px, 3.2vmin, 36px);
+    width: auto;
+    max-width: 100px;
+    text-align: left;
+    font-weight: 800;
+  }
+
+  .discount-input-wrapper__suffix {
+    font-size: clamp(18px, 2.2vmin, 36px);
+    font-weight: 800;
+  }
+}
+
+.promo-input-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+
+  .promo-input-wrapper__label {
+    font-size: clamp(15px, 2.2vmin, 25px);
+    font-weight: 500;
+  }
+
+  .sticker-input--promo {
+    font-size: clamp(15px, 2.2vmin, 25px);
+    font-weight: 800;
+    width: auto;
+    max-width: 150px;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .promo-input-wrapper__suffix {
+    font-size: clamp(15px, 2.2vmin, 36px);
+    font-weight: 800;
+  }
 }

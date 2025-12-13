@@ -11,5 +11,11 @@ export const ImageLayout = () => (
             src="/redactor-images/bg-sticker-white.png"
             alt="Sticker"
         />
+
+        <img
+            className="sticker__image_shadow"
+            src="/redactor-images/bg-sticker-shadow.png"
+            alt="Sticker shadow"
+        />
     </>
 )

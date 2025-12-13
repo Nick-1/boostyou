@@ -7,9 +7,9 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import type { StickerListItem } from '../../../types';
 import { UserContext } from '../../../context/user-context.tsx';
 import { CLIENT_ROUTE } from '../../../common/routes.ts';
+import { MainPageContainer } from '../../../layout/main-page-container';
 
 import './style.scss';
-import {MainPageContainer} from '../../../layout/main-page-container';
 
 const StickersListPage = () => {
     const { user } = use(UserContext)!;

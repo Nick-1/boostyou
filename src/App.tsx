@@ -32,8 +32,6 @@ const Layout = () => (
     </>
 );
 
-
-
 function App() {
   return (
       <BrowserRouter>

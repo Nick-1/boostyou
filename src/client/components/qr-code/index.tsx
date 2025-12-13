@@ -1,4 +1,5 @@
 import { QRCodeSVG } from 'qrcode.react';
+import './style.scss'
 
 interface QRCodeProps {
     link: string;
