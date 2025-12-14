@@ -12,7 +12,6 @@ const QrCode = (props: QRCodeProps) => {
 
     return (
         <QRCodeSVG
-            className="qr-code"
             value={link}
             size={ size || 100}
             fgColor={color}

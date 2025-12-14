@@ -10,13 +10,13 @@
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
   padding: 0;
 
-  @supports (-webkit-touch-callout: none) {
-    font-size: clamp(16px, 3.2vmin, 36px);
-  }
+  //@supports (-webkit-touch-callout: none) {
+  //  font-size: clamp(16px, 3.2vmin, 36px);
+  //}
 }
 
 .sticker-input--name {
-  font-size: clamp(13px, 3.2vmin, 36px);
+  font-size: clamp(16px, 3.2vmin, 36px);
   position: absolute;
   font-weight: 800;
   top: 29%;
@@ -29,7 +29,7 @@
 }
 
 .sticker-input--title {
-  font-size: clamp(14px, 3.2vmin, 36px);
+  font-size: clamp(16px, 3vmin, 36px);
   font-weight: 800;
 
   &::placeholder {
@@ -48,7 +48,7 @@
     color: #fff!important;
   }
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 1024px) {
     & {
       padding: 2px;
     }
@@ -58,7 +58,7 @@
 .sticker-input--phone,
 .sticker-input--address
 {
-  font-size: clamp(12px, 2.2vmin, 21px);
+  font-size: clamp(12px, 2vmin, 18px);
 }
 
 .sticker-input--address
@@ -77,23 +77,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 6px;
+  font-size: clamp(18px, 3vmin, 36px);
 
   .discount-input-wrapper__label {
-    font-size: clamp(18px, 3.2vmin, 36px);
     font-weight: 500;
   }
 
   .sticker-input--discount {
-    font-size: clamp(18px, 3.2vmin, 36px);
+    font-size: clamp(18px, 3vmin, 36px);
     width: auto;
     max-width: 100px;
     text-align: left;
     font-weight: 800;
+    margin-left: 3px;
   }
 
   .discount-input-wrapper__suffix {
-    font-size: clamp(18px, 2.2vmin, 36px);
+    font-size: clamp(18px, 3vmin, 36px);
     font-weight: 800;
   }
 }
@@ -105,12 +105,12 @@
   gap: 6px;
 
   .promo-input-wrapper__label {
-    font-size: clamp(15px, 2.2vmin, 25px);
+    font-size: clamp(15px, 2vmin, 25px);
     font-weight: 500;
   }
 
   .sticker-input--promo {
-    font-size: clamp(15px, 2.2vmin, 25px);
+    font-size: clamp(15px, 2vmin, 25px);
     font-weight: 800;
     width: auto;
     max-width: 150px;
@@ -119,7 +119,7 @@
   }
 
   .promo-input-wrapper__suffix {
-    font-size: clamp(15px, 2.2vmin, 36px);
+    font-size: clamp(15px, 2vmin, 36px);
     font-weight: 800;
   }
 }

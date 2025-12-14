@@ -67,7 +67,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1em;
+  gap: 0.5em;
 
   @media screen and (max-width: 400px) {
     & {
@@ -80,7 +80,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 2px;
 }
 
 .sticker__layer {

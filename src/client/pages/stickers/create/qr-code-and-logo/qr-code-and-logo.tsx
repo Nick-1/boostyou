@@ -12,7 +12,11 @@ export const QrCodeAndLogo: FC = () => {
                 src="/customers-images/kangaroo.jpeg"
                 alt="Customer logo"
             />
-            <QrCode link="https://google.com" />
+            <div className="qr-code">
+                <div className="qr-code__inner">
+                    <QrCode link="https://google.com" />
+                </div>
+            </div>
         </div>
     )
 }
