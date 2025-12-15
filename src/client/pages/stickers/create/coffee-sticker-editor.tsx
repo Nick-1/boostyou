@@ -167,14 +167,12 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
                                   aria-label="Highlighted tex"
                                   autoComplete="off"
                                   spellCheck={false}
-                                  required
                               />
                           </div>
 
                           <div className="main-inputs-container--block">
                               <div className="discount-input-wrapper">
                                   <span className="discount-input-wrapper__label">Discount:</span>
-
                                   <input
                                       name="discount"
                                       maxLength={3}
@@ -185,7 +183,6 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
                                       placeholder="0"
                                       aria-label="Discount percentage"
                                       autoComplete="off"
-                                      required
                                       style={{ width: `${Math.max(1, String(formData.discount || '0').length)}ch` }}
                                   />
 
@@ -204,7 +201,6 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
                                       placeholder="0"
                                       aria-label="Discount percentage"
                                       autoComplete="off"
-                                      required
                                       style={{ width: `${Math.max(1, String(formData.promo || '0').length) + 0.5}ch` }}
                                   />
                               </div>
@@ -227,7 +223,7 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
                                   ref={addressRef}
                                   name="address"
                                   maxLength={60}
-                                  rows={1} // стартує з 1 рядка, далі росте
+                                  rows={1}
                                   className="sticker-input sticker-input--address sticker-textarea"
                                   value={formData.address}
                                   onChange={addressInputHandler}
@@ -235,7 +231,6 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
                                   placeholder="Address"
                                   aria-label="Address"
                                   autoComplete="off"
-                                  required
                               />
                           </div>
                       </div>
