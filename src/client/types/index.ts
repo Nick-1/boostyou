@@ -24,6 +24,7 @@ export interface StickerData {
     highlightedBgColor: string;
     stickerForm: StickerForm,
     stickerStyle: StickerStyle,
+    logoFile: any;
 }
 
 export interface CoffeePlace {

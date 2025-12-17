@@ -1,14 +1,9 @@
 .control-panel--vertical {
   width: 35px;
   background: #fff;
-  border-left: 1px solid #e9e9e9;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
   gap: 16px;
   padding: 16px 5px;
-  border-radius: 15px;
   position: absolute;
   top: 50%;
   right: 0;
