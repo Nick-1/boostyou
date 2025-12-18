@@ -9,14 +9,12 @@ import { SubmitButton } from './submit-button';
 import { ImageLayout } from './image-layout.tsx';
 import { RedactorMode, StickerForm, StickerStyle } from './enum.ts';
 
-import './style.scss';
-import './input-styles.scss';
-import './control-panel-styles.scss';
-
 import { QrCodeAndLogo } from './components/qr-code-and-logo';
-import { StickerControlPanel } from './components/StickerControlPanel';
-import { StickerMainFields } from './components/StickerMainFields';
+import { StickerControlPanel } from './components/sticker-control-panel';
+import { StickerMainFields } from './components/sticker-main-fields';
 import { useStickerFieldVisibility } from './hooks/useStickerFieldVisibility';
+
+import './style.scss';
 
 interface CoffeeStickerEditorPageProps {
     updateFields?: StickerData | null;
@@ -119,14 +117,13 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
                             onAddressValueChange={onAddressValueChange}
                         />
 
-                        {visible.qr && (
-                            <QrCodeAndLogo
-                                logoFile={formData.logoFile}
-                                onLogoChange={(file) => setFormData((p) => ({ ...p, logoFile: file }))}
-                                qrCodeLink={formData.qrCodeLink}
-                                onQrCodeLinkChange={(link) => setFormData((p) => ({ ...p, qrCodeLink: link }))}
-                            />
-                        )}
+                        <QrCodeAndLogo
+                            visible={visible}
+                            logoFile={formData.logoFile}
+                            onLogoChange={(file) => setFormData((p) => ({ ...p, logoFile: file }))}
+                            qrCodeLink={formData.qrCodeLink}
+                            onQrCodeLinkChange={(link) => setFormData((p) => ({ ...p, qrCodeLink: link }))}
+                        />
                     </form>
                 </div>
 

@@ -44,4 +44,18 @@
   border: 0;
 }
 
+.control-panel {
+  .MuiToggleButton-root {
+    border: none;
+    border-radius: 8px;
+    padding: 6px;
+  }
 
+  .MuiToggleButton-root.Mui-selected {
+    background-color: rgba(25, 118, 210, 0.12);
+
+    &:hover {
+      background-color: rgba(25, 118, 210, 0.18);
+    }
+  }
+}

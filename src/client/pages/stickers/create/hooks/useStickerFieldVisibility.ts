@@ -7,6 +7,8 @@ export type StickerVisibleFields = {
     phone: boolean;
     address: boolean;
     qr: boolean;
+    logo: boolean;
+    qrAndLogo: boolean;
 };
 
 export const useStickerFieldVisibility = (initial?: Partial<StickerVisibleFields>) => {
@@ -16,12 +18,51 @@ export const useStickerFieldVisibility = (initial?: Partial<StickerVisibleFields
         promo: true,
         phone: true,
         address: true,
-        qr: true,
+        qr: false,
+        logo: false,
+        qrAndLogo: true,
         ...initial,
     });
 
     const toggleVisible = (key: keyof StickerVisibleFields) => {
-        setVisible((prev) => ({ ...prev, [key]: !prev[key] }));
+        setVisible((prev) => {
+            if (key === 'qr') {
+                if (prev.qrAndLogo) {
+                    return { ...prev, qr: false, logo: true, qrAndLogo: false };
+                }
+
+                const nextQr = !prev.qr;
+
+                if (nextQr && prev.logo) {
+                    return { ...prev, qr: false, logo: false, qrAndLogo: true };
+                }
+
+                return { ...prev, qr: nextQr, qrAndLogo: false };
+            }
+
+            if (key === 'logo') {
+                if (prev.qrAndLogo) {
+                    return { ...prev, qr: true, logo: false, qrAndLogo: false };
+                }
+
+                const nextLogo = !prev.logo;
+
+                if (nextLogo && prev.qr) {
+                    return { ...prev, qr: false, logo: false, qrAndLogo: true };
+                }
+
+                return { ...prev, logo: nextLogo, qrAndLogo: false };
+            }
+
+            if (key === 'qrAndLogo') {
+                return prev;
+            }
+
+            return {
+                ...prev,
+                [key]: !prev[key],
+            };
+        });
     };
 
     const onlyTitleVisible = useMemo(
@@ -31,7 +72,9 @@ export const useStickerFieldVisibility = (initial?: Partial<StickerVisibleFields
             !visible.promo &&
             !visible.phone &&
             !visible.address &&
-            !visible.qr,
+            !visible.qr &&
+            !visible.logo &&
+            !visible.qrAndLogo,
         [visible]
     );
 
