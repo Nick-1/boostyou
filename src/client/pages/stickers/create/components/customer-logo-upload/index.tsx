@@ -1,4 +1,4 @@
-import {type ChangeEvent, type FC, useRef} from 'react';
+import { type ChangeEvent, type FC, useRef } from 'react';
 
 import './style.scss';
 
@@ -19,25 +19,37 @@ export const CustomerLogoUpload: FC<CustomerLogoProps> = ({ logoFile, onLogoChan
         onLogoChange(file);
     };
 
-    const logoSrc = logoFile
-        ? URL.createObjectURL(logoFile)
-        : '/customers-images/kangaroo.jpeg';
+    const hasLogo = Boolean(logoFile);
+    const logoSrc = hasLogo ? URL.createObjectURL(logoFile!) : null;
 
     return (
-        <div className="customer-logo-wrapper" onClick={openFilePicker}>
-            <img
-                className="customer-logo"
-                src={logoSrc}
-                alt="Customer logo"
-            />
+        <div
+            className={`customer-logo-wrapper ${!hasLogo ? 'customer-logo-wrapper--empty' : ''}`}
+            onClick={openFilePicker}
+            role="button"
+            aria-label="Upload logo"
+        >
+            {hasLogo ? (
+                <img
+                    className="customer-logo"
+                    src={logoSrc!}
+                    alt="Customer logo"
+                />
+            ) : (
+                <div className="customer-logo-placeholder">
+                    Upload your logo
+                </div>
+            )}
 
             <input
+                form="sticker-form"
                 ref={fileInputRef}
                 type="file"
                 accept="image/*"
                 className="visually-hidden"
                 onChange={onFileChange}
+                required
             />
         </div>
-    )
-}
+    );
+};

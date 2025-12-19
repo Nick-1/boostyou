@@ -76,3 +76,15 @@
   cursor: pointer;
   padding: 0;
 }
+
+.qr-required-hidden-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+
+  pointer-events: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}

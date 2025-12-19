@@ -122,10 +122,10 @@ export const StickerMainFields: FC<Props> = ({
                             className="sticker-input sticker-input--promo"
                             value={formData.promo}
                             onChange={onChange}
-                            placeholder="0"
+                            placeholder=""
                             aria-label="Promo"
                             autoComplete="off"
-                            style={{ width: `${Math.max(1, String(formData.promo || '0').length) + 0.5}ch` }}
+                            style={{ width: `${Math.max(1, String(formData.promo || '').length) + 0.5}ch` }}
                             required
                         />
                     </div>

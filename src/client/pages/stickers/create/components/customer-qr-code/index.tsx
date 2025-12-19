@@ -75,19 +75,28 @@ export const CustomerQrCode: FC<CustomerQrCodeProps> = ({ qrCodeLink, onQrCodeLi
                     {hasLink ? (
                         <QrCode link={qrCodeLink} />
                     ) : (
-                        <Tooltip title="Add QR link" placement="left">
-                            <IconButton
-                                className="qr-code__placeholder"
-                                aria-label="Add QR link"
-                                onClick={handleOpen}
-                            >
-                                <QrCode2Icon />
-                            </IconButton>
-                        </Tooltip>
+                        <>
+                            <input
+                                form="sticker-form"
+                                type="url"
+                                name="qrCodeLink"
+                                value={qrCodeLink}
+                                className="qr-required-hidden-input"
+                                required
+                            />
+                            <Tooltip title="Add QR link" placement="left">
+                                <IconButton
+                                    className="qr-code__placeholder"
+                                    aria-label="Add QR link"
+                                    onClick={handleOpen}
+                                >
+                                    <QrCode2Icon />
+                                </IconButton>
+                            </Tooltip>
+                        </>
                     )}
                 </div>
 
-                {/* якщо навіть при наявності QR хочеш редагування по кліку */}
                 {hasLink && (
                     <button type="button" className="qr-code__edit-hit" onClick={handleOpen} aria-label="Edit QR link" />
                 )}

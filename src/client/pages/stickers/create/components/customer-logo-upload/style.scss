@@ -17,3 +17,18 @@
   object-fit: contain;
   display: block;
 }
+
+.customer-logo-wrapper--empty {
+  border: 2px dashed #cfcfcf;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.customer-logo-placeholder {
+  font-size: clamp(12px, 2.5vmin, 16px);
+  font-weight: 500;
+  color: #888;
+  text-align: center;
+  padding: 12px;
+  user-select: none;
+}
