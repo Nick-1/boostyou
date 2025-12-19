@@ -1,26 +1,29 @@
-import { type ChangeEvent, type FC, useRef } from 'react';
-
+import { type ChangeEvent, type FC, useMemo, useRef } from 'react';
 import './style.scss';
 
 export type CustomerLogoProps = {
+    logoUrl?: string | null;
     logoFile?: File | null;
     onLogoChange: (file: File | null) => void;
 };
 
-export const CustomerLogoUpload: FC<CustomerLogoProps> = ({ logoFile, onLogoChange }) => {
+export const CustomerLogoUpload: FC<CustomerLogoProps> = ({ logoUrl, logoFile, onLogoChange }) => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const openFilePicker = () => {
-        fileInputRef.current?.click();
-    };
+    const openFilePicker = () => fileInputRef.current?.click();
 
     const onFileChange = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0] ?? null;
         onLogoChange(file);
     };
 
-    const hasLogo = Boolean(logoFile);
-    const logoSrc = hasLogo ? URL.createObjectURL(logoFile!) : null;
+    const previewSrc = useMemo(() => {
+        if (logoFile) return URL.createObjectURL(logoFile);
+        return logoUrl ?? null;
+    }, [logoFile, logoUrl]);
+
+    const hasLogo = Boolean(previewSrc);
+    const isRequired = !logoUrl && !logoFile;
 
     return (
         <div
@@ -30,15 +33,9 @@ export const CustomerLogoUpload: FC<CustomerLogoProps> = ({ logoFile, onLogoChan
             aria-label="Upload logo"
         >
             {hasLogo ? (
-                <img
-                    className="customer-logo"
-                    src={logoSrc!}
-                    alt="Customer logo"
-                />
+                <img className="customer-logo" src={previewSrc!} alt="Customer logo" />
             ) : (
-                <div className="customer-logo-placeholder">
-                    Upload your logo
-                </div>
+                <div className="customer-logo-placeholder">Upload your logo</div>
             )}
 
             <input
@@ -48,7 +45,7 @@ export const CustomerLogoUpload: FC<CustomerLogoProps> = ({ logoFile, onLogoChan
                 accept="image/*"
                 className="visually-hidden"
                 onChange={onFileChange}
-                required
+                required={isRequired}
             />
         </div>
     );

@@ -9,13 +9,13 @@ import './style.scss';
 
 type Props = CustomerLogoProps & CustomerQrCodeProps & { visible: StickerVisibleFields };
 
-export const QrCodeAndLogo: FC<Props> = ({ logoFile, onLogoChange, qrCodeLink, onQrCodeLinkChange, visible }) => {
+export const QrCodeAndLogo: FC<Props> = ({ logoFile, onLogoChange, logoUrl, qrCodeLink, onQrCodeLinkChange, visible }) => {
 
     return (
         <>
             {visible.qrAndLogo && (
                 <div className="qr-code-and-logo-container">
-                    <CustomerLogoUpload onLogoChange={onLogoChange} logoFile={logoFile} />
+                    <CustomerLogoUpload onLogoChange={onLogoChange} logoFile={logoFile} logoUrl={logoUrl} />
 
                     <CustomerQrCode onQrCodeLinkChange={onQrCodeLinkChange} qrCodeLink={qrCodeLink} />
                 </div>
@@ -27,7 +27,7 @@ export const QrCodeAndLogo: FC<Props> = ({ logoFile, onLogoChange, qrCodeLink, o
             )}
             {visible.logo && (
                 <div className="customer-logo-container">
-                    <CustomerLogoUpload onLogoChange={onLogoChange} logoFile={logoFile} />
+                    <CustomerLogoUpload onLogoChange={onLogoChange} logoFile={logoFile} logoUrl={logoUrl} />
                 </div>
             )}
         </>

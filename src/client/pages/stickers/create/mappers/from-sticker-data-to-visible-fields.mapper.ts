@@ -2,7 +2,6 @@ import type { StickerVisibleFields } from '../hooks/useStickerFieldVisibility';
 import type { StickerData } from '../../../../types';
 
 const hasText = (v?: string | null) => Boolean(v && v.trim().length > 0);
-const hasLogo = (data: StickerData) => Boolean((data as any).logoFile);
 
 export const fromStickerDataToVisibleFieldsMapper = (
     data?: StickerData | null
@@ -10,7 +9,7 @@ export const fromStickerDataToVisibleFieldsMapper = (
     if (!data) return {};
 
     const qrPresent = hasText((data as any).qrCodeLink);
-    const logoPresent = hasLogo(data);
+    const logoPresent = Boolean(data.logoUrl) || Boolean(data.logoFile);
     const qrAndLogo = qrPresent && logoPresent;
 
     return {

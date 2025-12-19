@@ -34,6 +34,7 @@ const defaultFormValues = {
     highlightedBgColor: '#000000',
     stickerForm: StickerForm.RECTANGLE,
     stickerStyle: StickerStyle.REGULAR,
+    logoUrl: null,
     logoFile: null,
 };
 
@@ -46,12 +47,14 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
     const navigate = useNavigate();
     const { stickerId } = useParams<{ stickerId: string }>();
 
-    const formValues = updateFields ? updateFields : defaultFormValues;
+    const formValues = updateFields
+        ? { ...updateFields, logoFile: null }
+        : defaultFormValues;
     const [formData, setFormData] = useState<StickerData>(formValues);
 
     const redactorMode = updateFields ? RedactorMode.UPDATE : RedactorMode.CREATE;
 
-    const initialVisible = updateFields ? fromStickerDataToVisibleFieldsMapper(updateFields) : undefined;
+    const initialVisible = updateFields ? fromStickerDataToVisibleFieldsMapper(formValues) : undefined;
     const { visible, toggleVisible, onlyTitleVisible } = useStickerFieldVisibility(initialVisible);
 
     const inputChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -66,7 +69,8 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
         const id = new Date().getTime();
         if (formRef.current && !formRef.current.reportValidity()) return;
 
-        addSticker({ ...formData, id });
+        const payload = { ...formData, logoFile: null };
+        addSticker({ ...payload, id });
 
         console.info('formData---', formData)
         navigate(CLIENT_ROUTE.order.create);
@@ -80,7 +84,10 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
         if (formRef.current && !formRef.current.reportValidity()) return;
 
         const id = Number(stickerId);
-        updateSticker(id, { ...formData, id });
+        const payload = { ...formData, logoFile: null };
+
+        updateSticker(id, { ...payload, id });
+        console.info('formData---', formData)
         navigate(CLIENT_ROUTE.stickers.list);
     };
 
@@ -121,6 +128,7 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
 
                         <QrCodeAndLogo
                             visible={visible}
+                            logoUrl={formData.logoUrl}
                             logoFile={formData.logoFile}
                             onLogoChange={(file) => setFormData((p) => ({ ...p, logoFile: file }))}
                             qrCodeLink={formData.qrCodeLink}

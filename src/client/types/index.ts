@@ -22,9 +22,10 @@ export interface StickerData {
     phone: string;
     titleColor: string;
     highlightedBgColor: string;
-    stickerForm: StickerForm,
-    stickerStyle: StickerStyle,
-    logoFile: any;
+    stickerForm: StickerForm;
+    stickerStyle: StickerStyle;
+    logoUrl?: string | null;
+    logoFile?: File | null;
 }
 
 export interface CoffeePlace {
