@@ -26,6 +26,7 @@ export interface StickerData {
     stickerStyle: StickerStyle;
     logoUrl?: string | null;
     logoFile?: File | null;
+    colorSchema: number;
 }
 
 export interface CoffeePlace {

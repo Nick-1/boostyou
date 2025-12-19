@@ -1,4 +1,5 @@
 import { type ChangeEvent, type FC, useMemo, useRef } from 'react';
+
 import './style.scss';
 
 export type CustomerLogoProps = {

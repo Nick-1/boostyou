@@ -14,8 +14,11 @@ import { StickerControlPanel } from './components/sticker-control-panel';
 import { StickerMainFields } from './components/sticker-main-fields';
 import { useStickerFieldVisibility } from './hooks/useStickerFieldVisibility';
 
+import { fromStickerDataToVisibleFieldsMapper } from './mappers/from-sticker-data-to-visible-fields.mapper.ts';
+
 import './style.scss';
-import {fromStickerDataToVisibleFieldsMapper} from './mappers/from-sticker-data-to-visible-fields.mapper.ts';
+import './color-schema.scss';
+import {StickerTopBar} from './components/sticker-top-bar';
 
 interface CoffeeStickerEditorPageProps {
     updateFields?: StickerData | null;
@@ -36,6 +39,7 @@ const defaultFormValues = {
     stickerStyle: StickerStyle.REGULAR,
     logoUrl: null,
     logoFile: null,
+    colorSchema: 1,
 };
 
 export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props) => {
@@ -48,7 +52,7 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
     const { stickerId } = useParams<{ stickerId: string }>();
 
     const formValues = updateFields
-        ? { ...updateFields, logoFile: null }
+        ? { ...updateFields, colorSchema: updateFields.colorSchema ?? 1, logoFile: null }
         : defaultFormValues;
     const [formData, setFormData] = useState<StickerData>(formValues);
 
@@ -92,8 +96,13 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
     };
 
     return (
-        <div className="redactor-page-wrapper">
+        <div className={`redactor-page-wrapper color-schema--${formData.colorSchema}`}>
             <div className="coffee-cup-wrapper">
+                <StickerTopBar
+                    colorSchema={formData.colorSchema}
+                    onColorSchemaChange={(next) => setFormData((p) => ({ ...p, colorSchema: next }))}
+                />
+
                 <StickerControlPanel
                     visible={visible}
                     onToggleVisible={toggleVisible}

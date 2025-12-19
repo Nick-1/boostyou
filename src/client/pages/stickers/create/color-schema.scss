@@ -1,0 +1,49 @@
+.color-schema--1 {
+  .sticker-input--name,
+  .sticker-input--title,
+  .sticker-textarea--title,
+  .sticker-input--discount,
+  .sticker-input--promo
+  {
+    color: yellowgreen;
+  }
+
+  .sticker-input--highlighted-text {
+    background-color: yellowgreen;
+    color: white;
+  }
+
+  .qr-code {
+    border-color: yellowgreen;
+
+    &::after {
+      background-color: yellowgreen;
+      color: white;
+    }
+  }
+}
+
+.color-schema--2 {
+  .sticker-input--name,
+  .sticker-input--title,
+  .sticker-textarea--title,
+  .sticker-input--discount,
+  .sticker-input--promo
+  {
+    color: aqua;
+  }
+
+  .sticker-input--highlighted-text {
+    background-color: aqua;
+    color: black;
+  }
+
+  .qr-code {
+    border-color: aqua;
+
+    &::after {
+      background-color: aqua;
+      color: black;
+    }
+  }
+}

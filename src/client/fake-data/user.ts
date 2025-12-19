@@ -16,7 +16,8 @@ const stickersList: StickerListItem[] = [
         highlightedBgColor: '#111111',
         stickerForm: StickerForm.RECTANGLE,
         stickerStyle: StickerStyle.REGULAR,
-        logoUrl: 'https://www.animalcarectr.com/blog/images/fluffy_grey_cat.jpg'
+        logoUrl: 'https://www.animalcarectr.com/blog/images/fluffy_grey_cat.jpg',
+        colorSchema: 1,
     },
     {
         id: 2,
