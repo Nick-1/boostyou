@@ -15,6 +15,7 @@ import { StickerMainFields } from './components/sticker-main-fields';
 import { useStickerFieldVisibility } from './hooks/useStickerFieldVisibility';
 
 import './style.scss';
+import {fromStickerDataToVisibleFieldsMapper} from './mappers/from-sticker-data-to-visible-fields.mapper.ts';
 
 interface CoffeeStickerEditorPageProps {
     updateFields?: StickerData | null;
@@ -50,7 +51,8 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
 
     const redactorMode = updateFields ? RedactorMode.UPDATE : RedactorMode.CREATE;
 
-    const { visible, toggleVisible, onlyTitleVisible } = useStickerFieldVisibility();
+    const initialVisible = updateFields ? fromStickerDataToVisibleFieldsMapper(updateFields) : undefined;
+    const { visible, toggleVisible, onlyTitleVisible } = useStickerFieldVisibility(initialVisible);
 
     const inputChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
