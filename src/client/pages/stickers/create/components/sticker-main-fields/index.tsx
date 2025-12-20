@@ -25,7 +25,7 @@ export const StickerMainFields: FC<Props> = ({
 }) => {
     const titleTextarea = useAutoGrowTextarea({
         value: formData.title,
-        maxLines: 3,
+        maxLines: 7,
         onValueChange: onTitleValueChange,
     });
 
@@ -35,6 +35,32 @@ export const StickerMainFields: FC<Props> = ({
         onValueChange: onAddressValueChange,
     });
 
+    const onPhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const raw = e.target.value ?? '';
+
+        // лишаємо тільки цифри
+        let digits = raw.replace(/\D/g, '');
+
+        // якщо юзер пастить саме "+1....", то digits починається з "1" (country code),
+        // його треба прибрати, бо "+1" ми додамо самі
+        const trimmed = raw.trim();
+        if (trimmed.startsWith('+1') && digits.startsWith('1')) {
+            digits = digits.slice(1);
+        }
+
+        // якщо нічого не лишилось — поле має стати пустим (без "+1")
+        const next = digits.length === 0 ? '' : `+1${digits}`;
+
+        onChange({
+            ...e,
+            target: {
+                ...e.target,
+                name: 'phone',
+                value: next,
+            },
+        } as React.ChangeEvent<HTMLInputElement>);
+    };
+
     return (
         <div className="main-inputs-container">
             <div className="main-inputs-container--block">
@@ -42,7 +68,7 @@ export const StickerMainFields: FC<Props> = ({
                     <textarea
                         ref={titleTextarea.ref}
                         name="title"
-                        maxLength={60}
+                        maxLength={70}
                         rows={1}
                         className="sticker-input sticker-input--title sticker-textarea sticker-textarea--title"
                         value={formData.title}
@@ -133,11 +159,12 @@ export const StickerMainFields: FC<Props> = ({
                 {visible.phone && (
                     <input
                         name="phone"
-                        maxLength={12}
+                        maxLength={12} // наприклад: "+1" + 12 цифр. Піджени під свій ліміт
                         type="tel"
+                        inputMode="tel"
                         className="sticker-input sticker-input--phone"
                         value={formData.phone}
-                        onChange={onChange}
+                        onChange={onPhoneChange}
                         placeholder="Phone number"
                         autoComplete="off"
                         aria-label="Phone number"

@@ -7,10 +7,19 @@ type UseAutoGrowTextareaArgs = {
 };
 
 const getNums = (el: HTMLTextAreaElement) => {
-    const style = window.getComputedStyle(el);
-    const lineHeight = Number.parseFloat(style.lineHeight || '0') || 0;
-    const paddingTop = Number.parseFloat(style.paddingTop || '0') || 0;
-    const paddingBottom = Number.parseFloat(style.paddingBottom || '0') || 0;
+    const cs = window.getComputedStyle(el);
+
+    const fontSize = Number.parseFloat(cs.fontSize || '16') || 16;
+
+    let lineHeight = Number.parseFloat(cs.lineHeight);
+    if (!Number.isFinite(lineHeight)) {
+        // line-height: normal -> fallback
+        lineHeight = fontSize * 1.2;
+    }
+
+    const paddingTop = Number.parseFloat(cs.paddingTop || '0') || 0;
+    const paddingBottom = Number.parseFloat(cs.paddingBottom || '0') || 0;
+
     return { lineHeight, paddingTop, paddingBottom };
 };
 
@@ -28,25 +37,26 @@ export const useAutoGrowTextarea = ({ value, maxLines, onValueChange }: UseAutoG
             }
 
             // 2) resize to content
-            el.style.height = '0px';
+            el.style.height = 'auto';
             el.style.height = `${el.scrollHeight}px`;
 
-            if (!lineHeight) return;
-
-            // 3) clamp soft-wrapped lines by max height
             const maxHeight = paddingTop + paddingBottom + lineHeight * maxLines;
 
-            // if overflow -> trim chars until it fits (covers soft-wrap)
+            // якщо не можемо порахувати адекватно — не робимо height-clamp
+            if (!Number.isFinite(maxHeight) || maxHeight <= 0) return;
+
+            // 3) clamp soft-wrapped lines with small tolerance (rounding in browsers)
+            const EPS = 2; // px
             let safety = 6000;
-            while (el.scrollHeight > maxHeight && el.value.length > 0 && safety-- > 0) {
+
+            while (el.scrollHeight - maxHeight > EPS && el.value.length > 0 && safety-- > 0) {
                 el.value = el.value.slice(0, -1);
-                el.style.height = '0px';
+                el.style.height = 'auto';
                 el.style.height = `${el.scrollHeight}px`;
             }
 
-            // set final height (never more than maxHeight)
-            if (el.scrollHeight > maxHeight) {
-                el.style.height = `${maxHeight}px`;
+            if (el.scrollHeight - maxHeight > EPS) {
+                el.style.height = `${Math.ceil(maxHeight)}px`;
             }
         },
         [maxLines]
@@ -68,7 +78,6 @@ export const useAutoGrowTextarea = ({ value, maxLines, onValueChange }: UseAutoG
             const el = e.currentTarget;
             const explicitLineCount = el.value.split('\n').length;
 
-            // block Enter if already at max explicit lines
             if (explicitLineCount >= maxLines) {
                 e.preventDefault();
             }
@@ -76,7 +85,6 @@ export const useAutoGrowTextarea = ({ value, maxLines, onValueChange }: UseAutoG
         [maxLines]
     );
 
-    // keep height synced on prefills / programmatic changes
     useEffect(() => {
         const el = ref.current;
         if (!el) return;

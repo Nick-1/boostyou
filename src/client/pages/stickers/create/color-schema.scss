@@ -1,49 +1,60 @@
 .color-schema--1 {
-  .sticker-input--name,
   .sticker-input--title,
   .sticker-textarea--title,
+  {
+    color: #658241;
+  }
   .sticker-input--discount,
   .sticker-input--promo
   {
-    color: yellowgreen;
+    color: #fb5b12;
   }
 
   .sticker-input--highlighted-text {
-    background-color: yellowgreen;
+    background-color: #a8c470;
     color: white;
   }
 
+  .sticker-input--phone,
+  .sticker-input--address {
+    color: #822f0a;
+  }
+
   .qr-code {
-    border-color: yellowgreen;
+    border-color: #fb5b12;
 
     &::after {
-      background-color: yellowgreen;
+      background-color: #fb5b12;
       color: white;
     }
   }
 }
 
 .color-schema--2 {
-  .sticker-input--name,
   .sticker-input--title,
   .sticker-textarea--title,
   .sticker-input--discount,
   .sticker-input--promo
   {
-    color: aqua;
+    color: #ab100f;
   }
 
   .sticker-input--highlighted-text {
-    background-color: aqua;
-    color: black;
+    background-color: #ab100f;
+    color: white;
+  }
+
+  .sticker-input--phone,
+  .sticker-input--address {
+    color: #000;
   }
 
   .qr-code {
-    border-color: aqua;
+    border-color: #ab100f;
 
     &::after {
-      background-color: aqua;
-      color: black;
+      background-color: #ab100f;
+      color: white;
     }
   }
 }
