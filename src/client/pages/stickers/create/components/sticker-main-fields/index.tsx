@@ -38,17 +38,13 @@ export const StickerMainFields: FC<Props> = ({
     const onPhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const raw = e.target.value ?? '';
 
-        // лишаємо тільки цифри
         let digits = raw.replace(/\D/g, '');
 
-        // якщо юзер пастить саме "+1....", то digits починається з "1" (country code),
-        // його треба прибрати, бо "+1" ми додамо самі
         const trimmed = raw.trim();
         if (trimmed.startsWith('+1') && digits.startsWith('1')) {
             digits = digits.slice(1);
         }
 
-        // якщо нічого не лишилось — поле має стати пустим (без "+1")
         const next = digits.length === 0 ? '' : `+1${digits}`;
 
         onChange({
@@ -58,6 +54,30 @@ export const StickerMainFields: FC<Props> = ({
                 name: 'phone',
                 value: next,
             },
+        } as React.ChangeEvent<HTMLInputElement>);
+    };
+
+    const onDiscountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const raw = e.target.value ?? '';
+
+        if (raw === '') {
+            onChange({
+                ...e,
+                target: { ...e.target, name: 'discount', value: '' },
+            } as React.ChangeEvent<HTMLInputElement>);
+            return;
+        }
+
+        if (!/^\d+$/.test(raw)) return;
+
+        const normalized = raw.replace(/^0+/, '') || '0';
+        const num = Number(normalized);
+
+        if (num < 1 || num > 100) return;
+
+        onChange({
+            ...e,
+            target: { ...e.target, name: 'discount', value: normalized },
         } as React.ChangeEvent<HTMLInputElement>);
     };
 
@@ -122,7 +142,7 @@ export const StickerMainFields: FC<Props> = ({
                             type="text"
                             className="sticker-input sticker-input--discount"
                             value={formData.discount}
-                            onChange={onChange}
+                            onChange={onDiscountChange}
                             placeholder="0"
                             aria-label="Discount percentage"
                             autoComplete="off"

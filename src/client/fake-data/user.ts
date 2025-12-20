@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import {StickerForm, StickerStyle} from '../pages/stickers/create/enum.ts';
 
 import type {StickerListItem, User} from '../types';
