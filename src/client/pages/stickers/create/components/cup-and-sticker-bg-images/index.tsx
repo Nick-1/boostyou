@@ -1,4 +1,4 @@
-export const ImageLayout = () => (
+export const CupAndStickerBgImages = () => (
     <>
         <img
             className="coffee-cup__image"

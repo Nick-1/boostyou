@@ -1,24 +1,21 @@
-import { type ChangeEvent, type FC, use, useRef, useState } from 'react';
+import { type FC, use, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 
 import { UserContext } from '../../../context/user-context.tsx';
-import type { StickerData } from '../../../types';
 import { CLIENT_ROUTE } from '../../../common/routes.ts';
+import type { StickerData } from '../../../types';
 
 import { SubmitButton } from './submit-button';
-import { ImageLayout } from './image-layout.tsx';
-import { RedactorMode, StickerForm, StickerStyle } from './enum.ts';
-
-import { QrCodeAndLogo } from './components/qr-code-and-logo';
-import { StickerControlPanel } from './components/sticker-control-panel';
-import { StickerMainFields } from './components/sticker-main-fields';
-import { useStickerFieldVisibility } from './hooks/useStickerFieldVisibility';
+import { StickerWithCupPreview } from './components/main-preview/sticker-with-cup';
 
 import { fromStickerDataToVisibleFieldsMapper } from './mappers/from-sticker-data-to-visible-fields.mapper.ts';
 
+import { RedactorMode, StickerForm, StickerStyle } from './enum.ts';
+
+import './components/color-picker-popover/color-schema.scss';
 import './style.scss';
-import './color-schema.scss';
-import {StickerTopBar} from './components/sticker-top-bar';
+
+import {StickerOnlyPreview} from './components/main-preview/sticker-only';
 
 interface CoffeeStickerEditorPageProps {
     updateFields?: StickerData | null;
@@ -30,15 +27,13 @@ const defaultFormValues = {
     highlightedText: '',
     discount: '',
     promo: '',
-    qrCodeLink: '',
     address: '',
     phone: '',
-    titleColor: '#111111',
-    highlightedBgColor: '#000000',
-    stickerForm: StickerForm.RECTANGLE,
-    stickerStyle: StickerStyle.REGULAR,
+    qrCodeLink: '',
     logoUrl: null,
     logoFile: null,
+    stickerForm: StickerForm.RECTANGLE,
+    stickerStyle: StickerStyle.REGULAR,
     colorSchema: 1,
 };
 
@@ -59,15 +54,6 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
     const redactorMode = updateFields ? RedactorMode.UPDATE : RedactorMode.CREATE;
 
     const initialVisible = updateFields ? fromStickerDataToVisibleFieldsMapper(formValues) : undefined;
-    const { visible, toggleVisible, onlyTitleVisible } = useStickerFieldVisibility(initialVisible);
-
-    const inputChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
-    };
-
-    const onTitleValueChange = (next: string) => setFormData((p) => ({ ...p, title: next }));
-    const onAddressValueChange = (next: string) => setFormData((p) => ({ ...p, address: next }));
 
     const createStickerHandler = () => {
         const id = new Date().getTime();
@@ -97,57 +83,23 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
 
     return (
         <div className={`redactor-page-wrapper color-schema--${formData.colorSchema}`}>
-            <div className="coffee-cup-wrapper">
-                <StickerTopBar
-                    colorSchema={formData.colorSchema}
-                    onColorSchemaChange={(next) => setFormData((p) => ({ ...p, colorSchema: next }))}
-                />
+            <StickerWithCupPreview
+                // @ts-ignore
+                initialVisible={initialVisible}
+                formData={formData}
+                setFormData={setFormData}
+                formRef={formRef}
+            />
 
-                <StickerControlPanel
-                    visible={visible}
-                    onToggleVisible={toggleVisible}
-                />
+            <StickerOnlyPreview
+              // @ts-ignore
+              initialVisible={initialVisible}
+              formData={formData}
+              setFormData={setFormData}
+              formRef={formRef}
+            />
 
-                <ImageLayout />
-
-                <input
-                    name="name"
-                    form="sticker-form"
-                    maxLength={20}
-                    className="sticker-input sticker-input--name"
-                    value={formData.name}
-                    onChange={inputChangeHandler}
-                    placeholder="Sticker name"
-                    aria-label="Sticker name"
-                    autoComplete="off"
-                    spellCheck={false}
-                    required
-                />
-
-                <div className="sticker__layer">
-                    <form ref={formRef} id="sticker-form">
-                        <StickerMainFields
-                            formData={formData}
-                            visible={visible}
-                            onlyTitleVisible={onlyTitleVisible}
-                            onChange={inputChangeHandler}
-                            onTitleValueChange={onTitleValueChange}
-                            onAddressValueChange={onAddressValueChange}
-                        />
-
-                        <QrCodeAndLogo
-                            visible={visible}
-                            logoUrl={formData.logoUrl}
-                            logoFile={formData.logoFile}
-                            onLogoChange={(file) => setFormData((p) => ({ ...p, logoFile: file }))}
-                            qrCodeLink={formData.qrCodeLink}
-                            onQrCodeLinkChange={(link) => setFormData((p) => ({ ...p, qrCodeLink: link }))}
-                        />
-                    </form>
-                </div>
-
-                <SubmitButton mode={redactorMode} updateHandler={updateStickerHandler} createHandler={createStickerHandler} />
-            </div>
+            <SubmitButton mode={redactorMode} updateHandler={updateStickerHandler} createHandler={createStickerHandler} />
         </div>
     );
 };

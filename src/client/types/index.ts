@@ -20,8 +20,6 @@ export interface StickerData {
     qrCodeLink: string;
     address: string;
     phone: string;
-    titleColor: string;
-    highlightedBgColor: string;
     stickerForm: StickerForm;
     stickerStyle: StickerStyle;
     logoUrl?: string | null;

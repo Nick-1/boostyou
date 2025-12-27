@@ -19,7 +19,7 @@ export const SubmitButton: FC<SubmitButtonProps> = (props) => {
     const currentMode = mode ? mode : RedactorMode.CREATE;
 
     return (
-        <Box className="submit-button__container">
+        <Box className="submit-button__container no-print">
             { currentMode === RedactorMode.CREATE && <Button onClick={createHandler} startIcon={<NoteAddIcon/>} variant="contained" size="large">Create</Button>}
             { currentMode === RedactorMode.UPDATE && <Button onClick={updateHandler} startIcon={<EditDocumentIcon />} variant="contained" size="large">Update</Button>}
         </Box>

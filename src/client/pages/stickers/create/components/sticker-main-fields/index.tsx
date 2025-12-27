@@ -4,8 +4,6 @@ import type {StickerData} from '../../../../../types';
 import { useAutoGrowTextarea } from '../../hooks/useAutoGrowTextarea.ts';
 import type {StickerVisibleFields} from '../../hooks/useStickerFieldVisibility.ts';
 
-import './style.scss';
-
 type Props = {
     formData: StickerData;
     visible: StickerVisibleFields;

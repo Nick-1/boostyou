@@ -50,7 +50,7 @@ const Header = () => {
     };
 
     return (
-        <AppBar className="header" position="relative" sx={{ zIndex: 2 }}>
+        <AppBar className="header no-print" position="relative" sx={{ zIndex: 2 }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Box className="header__logo desktop" sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>

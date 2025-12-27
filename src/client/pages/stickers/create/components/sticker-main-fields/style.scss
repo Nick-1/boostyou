@@ -85,11 +85,11 @@
   }
 
   .sticker-input--phone {
-    padding-left: 0; // по дефолту без +
+    padding-left: 0;
   }
 
   &--has-value .sticker-input--phone {
-    padding-left: 1ch; // місце під +
+    padding-left: 1ch;
   }
 }
 
@@ -102,13 +102,12 @@
     font-weight: 800;
     line-height: 1;
     user-select: none;
-    // якщо треба адаптивний шрифт як у тебе:
     font-size: inherit;
   }
 
   .sticker-input--phone {
     width: auto;
-    min-width: 6ch; // щоб не схлопувався до нуля
+    min-width: 6ch;
   }
 }
 

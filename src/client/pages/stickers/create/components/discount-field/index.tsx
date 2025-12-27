@@ -34,18 +34,15 @@ export function DiscountField({
     onChange={(e) => {
         const raw = e.target.value;
 
-        // дозволяємо очистити поле
         if (raw === '') {
             onChange('');
             return;
         }
 
-        // тільки цифри
         if (!/^\d+$/.test(raw)) return;
 
         const num = Number(raw);
 
-        // жорсткий контроль діапазону
         if (num < 1 || num > 100) return;
 
         onChange(num);
