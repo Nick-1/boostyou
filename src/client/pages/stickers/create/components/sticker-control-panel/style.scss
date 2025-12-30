@@ -10,6 +10,12 @@
   transform: translateY(-50%);
 }
 
+.stickerPreview {
+  .control-panel--vertical {
+    right: -10%;
+  }
+}
+
 .color-dot {
   width: 36px;
   height: 36px;

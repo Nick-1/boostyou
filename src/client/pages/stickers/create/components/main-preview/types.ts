@@ -8,5 +8,5 @@ export type MainStickerProps = {
     setFormData: Dispatch<SetStateAction<StickerData>>;
     visible: StickerVisibleFields;
     onlyTitleVisible: boolean;
-    initialVisible: Partial<StickerVisibleFields>;
+    toggleVisible: (key: keyof StickerVisibleFields) => void;
 };

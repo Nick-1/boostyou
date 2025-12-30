@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 
-import type {StickerData} from '../../../../../types';
+import type { StickerData } from '../../../../../types';
 import { useAutoGrowTextarea } from '../../hooks/useAutoGrowTextarea.ts';
-import type {StickerVisibleFields} from '../../hooks/useStickerFieldVisibility.ts';
+import type { StickerVisibleFields } from '../../hooks/useStickerFieldVisibility.ts';
 
 type Props = {
     formData: StickerData;

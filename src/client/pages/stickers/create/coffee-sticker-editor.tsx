@@ -12,10 +12,11 @@ import { fromStickerDataToVisibleFieldsMapper } from './mappers/from-sticker-dat
 
 import { RedactorMode, StickerForm, StickerStyle } from './enum.ts';
 
+import { StickerOnlyPreview } from './components/main-preview/sticker-only';
+import { useStickerFieldVisibility } from './hooks/useStickerFieldVisibility.ts';
+
 import './components/color-picker-popover/color-schema.scss';
 import './style.scss';
-
-import {StickerOnlyPreview} from './components/main-preview/sticker-only';
 
 interface CoffeeStickerEditorPageProps {
     updateFields?: StickerData | null;
@@ -54,6 +55,7 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
     const redactorMode = updateFields ? RedactorMode.UPDATE : RedactorMode.CREATE;
 
     const initialVisible = updateFields ? fromStickerDataToVisibleFieldsMapper(formValues) : undefined;
+    const { visible, toggleVisible, onlyTitleVisible } = useStickerFieldVisibility(initialVisible);
 
     const createStickerHandler = () => {
         const id = new Date().getTime();
@@ -84,19 +86,21 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
     return (
         <div className={`redactor-page-wrapper color-schema--${formData.colorSchema}`}>
             <StickerWithCupPreview
-                // @ts-ignore
-                initialVisible={initialVisible}
                 formData={formData}
                 setFormData={setFormData}
                 formRef={formRef}
+                visible={visible}
+                toggleVisible={toggleVisible}
+                onlyTitleVisible={onlyTitleVisible}
             />
 
             <StickerOnlyPreview
-              // @ts-ignore
-              initialVisible={initialVisible}
-              formData={formData}
-              setFormData={setFormData}
-              formRef={formRef}
+                formData={formData}
+                setFormData={setFormData}
+                formRef={formRef}
+                visible={visible}
+                toggleVisible={toggleVisible}
+                onlyTitleVisible={onlyTitleVisible}
             />
 
             <SubmitButton mode={redactorMode} updateHandler={updateStickerHandler} createHandler={createStickerHandler} />

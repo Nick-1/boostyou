@@ -1,4 +1,3 @@
-import { useStickerFieldVisibility } from '../../../hooks/useStickerFieldVisibility.ts';
 import { StickerTopBar } from '../../sticker-top-bar';
 import { StickerControlPanel } from '../../sticker-control-panel';
 import { CupAndStickerBgImages } from '../../cup-and-sticker-bg-images';
@@ -6,17 +5,18 @@ import { StickerEditorLayer } from '../../sticker-editor-layer';
 
 import type { MainStickerProps } from '../types.ts';
 
+import '../common-style.scss'
 import './style.scss';
 
 export const StickerWithCupPreview = (props: MainStickerProps) => {
     const {
-        initialVisible,
-        formData,
-        setFormData,
-        formRef,
+      formData,
+      setFormData,
+      formRef,
+      visible,
+      toggleVisible,
+      onlyTitleVisible
     } = props;
-
-    const { visible, toggleVisible, onlyTitleVisible } = useStickerFieldVisibility(initialVisible);
 
     return (
         <div className="coffee-cup-wrapper">

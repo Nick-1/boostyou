@@ -1,15 +1,20 @@
 import { StickerTopBar } from '../../sticker-top-bar';
 import { StickerControlPanel } from '../../sticker-control-panel';
 import { StickerEditorLayer } from '../../sticker-editor-layer';
-import { useStickerFieldVisibility } from '../../../hooks/useStickerFieldVisibility.ts';
 
 import type { MainStickerProps } from '../types.ts';
 
 import './style.scss';
 
 export const StickerOnlyPreview = (props: MainStickerProps) => {
-  const { initialVisible, formData, setFormData, formRef } = props;
-  const { visible, toggleVisible, onlyTitleVisible } = useStickerFieldVisibility(initialVisible);
+  const {
+    formData,
+    setFormData,
+    formRef,
+    visible,
+    toggleVisible,
+    onlyTitleVisible
+  } = props;
 
   return (
     <div className="stickerPreview">
