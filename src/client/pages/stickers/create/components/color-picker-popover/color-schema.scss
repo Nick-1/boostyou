@@ -1,6 +1,35 @@
 .color-schema--1 {
   .sticker-input--title,
   .sticker-textarea--title,
+  .sticker-input--discount,
+  .sticker-input--promo
+  {
+    color: #000;
+  }
+
+  .sticker-input--highlighted-text {
+    background-color: #000;
+    color: white;
+  }
+
+  .sticker-input--phone,
+  .sticker-input--address {
+    color: #000;
+  }
+
+  .qr-code {
+    border-color: #000;
+
+    &::after {
+      background-color: #000;
+      color: white;
+    }
+  }
+}
+
+.color-schema--2 {
+  .sticker-input--title,
+  .sticker-textarea--title,
   {
     color: #658241;
   }
@@ -30,7 +59,7 @@
   }
 }
 
-.color-schema--2 {
+.color-schema--3 {
   .sticker-input--title,
   .sticker-textarea--title,
   .sticker-input--discount,

@@ -1,4 +1,4 @@
-import { StickerTopBar } from '../../sticker-top-bar';
+// import { StickerTopBar } from '../../sticker-top-bar';
 import { StickerControlPanel } from '../../sticker-control-panel';
 import { CupAndStickerBgImages } from '../../cup-and-sticker-bg-images';
 import { StickerEditorLayer } from '../../sticker-editor-layer';
@@ -20,10 +20,10 @@ export const StickerWithCupPreview = (props: MainStickerProps) => {
 
     return (
         <div className="coffee-cup-wrapper">
-            <StickerTopBar
-                colorSchema={formData.colorSchema}
-                onColorSchemaChange={(next) => setFormData((p) => ({ ...p, colorSchema: next }))}
-            />
+            {/*<StickerTopBar*/}
+            {/*    colorSchema={formData.colorSchema}*/}
+            {/*    onColorSchemaChange={(next) => setFormData((p) => ({ ...p, colorSchema: next }))}*/}
+            {/*/>*/}
 
             <StickerControlPanel
                 visible={visible}

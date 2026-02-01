@@ -11,25 +11,32 @@ type Props = CustomerLogoProps & CustomerQrCodeProps & { visible: StickerVisible
 
 export const QrCodeAndLogo: FC<Props> = ({ logoFile, onLogoChange, logoUrl, qrCodeLink, onQrCodeLinkChange, visible }) => {
 
-    return (
-        <>
-            {visible.qrAndLogo && (
-                <div className="qr-code-and-logo-container">
-                    <CustomerLogoUpload onLogoChange={onLogoChange} logoFile={logoFile} logoUrl={logoUrl} />
 
-                    <CustomerQrCode onQrCodeLinkChange={onQrCodeLinkChange} qrCodeLink={qrCodeLink} />
-                </div>
-            )}
-            {visible.qr && (
-                <div className="qr-code-container">
-                    <CustomerQrCode onQrCodeLinkChange={onQrCodeLinkChange} qrCodeLink={qrCodeLink} />
-                </div>
-            )}
-            {visible.logo && (
-                <div className="customer-logo-container">
-                    <CustomerLogoUpload onLogoChange={onLogoChange} logoFile={logoFile} logoUrl={logoUrl} />
-                </div>
-            )}
-        </>
+    return (
+        <div className="qr-code-container">
+          <CustomerQrCode onQrCodeLinkChange={onQrCodeLinkChange} qrCodeLink={qrCodeLink} />
+        </div>
     );
+
+    // return (
+    //     <>
+    //         {visible.qrAndLogo && (
+    //             <div className="qr-code-and-logo-container">
+    //                 <CustomerLogoUpload onLogoChange={onLogoChange} logoFile={logoFile} logoUrl={logoUrl} />
+    //
+    //                 <CustomerQrCode onQrCodeLinkChange={onQrCodeLinkChange} qrCodeLink={qrCodeLink} />
+    //             </div>
+    //         )}
+    //         {visible.qr && (
+    //             <div className="qr-code-container">
+    //                 <CustomerQrCode onQrCodeLinkChange={onQrCodeLinkChange} qrCodeLink={qrCodeLink} />
+    //             </div>
+    //         )}
+    //         {visible.logo && (
+    //             <div className="customer-logo-container">
+    //                 <CustomerLogoUpload onLogoChange={onLogoChange} logoFile={logoFile} logoUrl={logoUrl} />
+    //             </div>
+    //         )}
+    //     </>
+    // );
 };

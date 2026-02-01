@@ -22,13 +22,15 @@ interface PagesList {
 }
 
 const pages: PagesList[] = [
-    {
-        label: 'My stickers',
-        path: '/stickers/list',
-    },
+    // {
+    //     label: 'My stickers',
+    //     path: '/stickers/list',
+    // },
 ];
 
 const settings = ['Logout'];
+
+const logoWhite = `${import.meta.env.BASE_URL}logo-white.png`;
 
 const Header = () => {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -54,8 +56,8 @@ const Header = () => {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Box className="header__logo desktop" sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
-                        <Link to="/">
-                            <img src="/logo-white.png" alt="Boostyou logo"/>
+                        <Link to="https://boostyou.us/">
+                            <img src={logoWhite} alt="Boostyou logo"/>
                         </Link>
                     </Box>
 
@@ -101,8 +103,8 @@ const Header = () => {
                     </Box>
 
                     <Box className="header__logo mobile" sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}>
-                        <Link to="/">
-                            <img src="/logo-white.png" alt="Boostyou logo"/>
+                        <Link to="https://boostyou.us/">
+                            <img src={logoWhite} alt="Boostyou logo"/>
                         </Link>
                     </Box>
 

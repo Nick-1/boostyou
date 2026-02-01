@@ -80,27 +80,27 @@ export const StickerControlPanel: FC<Props> = ({ visible, onToggleVisible }) => 
                         </ToggleButton>
                     </Tooltip>
 
-                    <Tooltip title="QR code" placement="left">
-                        <ToggleButton
-                            size="small"
-                            value="qr"
-                            selected={qrSelected}
-                            onChange={() => onToggleVisible('qr')}
-                        >
-                            <QrCodeIcon fontSize="small" />
-                        </ToggleButton>
-                    </Tooltip>
+                    {/*<Tooltip title="QR code" placement="left">*/}
+                    {/*    <ToggleButton*/}
+                    {/*        size="small"*/}
+                    {/*        value="qr"*/}
+                    {/*        selected={qrSelected}*/}
+                    {/*        onChange={() => onToggleVisible('qr')}*/}
+                    {/*    >*/}
+                    {/*        <QrCodeIcon fontSize="small" />*/}
+                    {/*    </ToggleButton>*/}
+                    {/*</Tooltip>*/}
 
-                    <Tooltip title="Logo" placement="left">
-                        <ToggleButton
-                            size="small"
-                            value="logo"
-                            selected={logoSelected}
-                            onChange={() => onToggleVisible('logo')}
-                        >
-                            <ImageIcon fontSize="small" />
-                        </ToggleButton>
-                    </Tooltip>
+                    {/*<Tooltip title="Logo" placement="left">*/}
+                    {/*    <ToggleButton*/}
+                    {/*        size="small"*/}
+                    {/*        value="logo"*/}
+                    {/*        selected={logoSelected}*/}
+                    {/*        onChange={() => onToggleVisible('logo')}*/}
+                    {/*    >*/}
+                    {/*        <ImageIcon fontSize="small" />*/}
+                    {/*    </ToggleButton>*/}
+                    {/*</Tooltip>*/}
                 </Stack>
             </Box>
         </aside>

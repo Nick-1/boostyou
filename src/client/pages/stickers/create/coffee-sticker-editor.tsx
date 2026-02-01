@@ -12,7 +12,7 @@ import { fromStickerDataToVisibleFieldsMapper } from './mappers/from-sticker-dat
 
 import { RedactorMode, StickerForm, StickerStyle } from './enum.ts';
 
-import { StickerOnlyPreview } from './components/main-preview/sticker-only';
+// import { StickerOnlyPreview } from './components/main-preview/sticker-only';
 import { useStickerFieldVisibility } from './hooks/useStickerFieldVisibility.ts';
 
 import './components/color-picker-popover/color-schema.scss';
@@ -94,14 +94,14 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
                 onlyTitleVisible={onlyTitleVisible}
             />
 
-            <StickerOnlyPreview
-                formData={formData}
-                setFormData={setFormData}
-                formRef={formRef}
-                visible={visible}
-                toggleVisible={toggleVisible}
-                onlyTitleVisible={onlyTitleVisible}
-            />
+            {/*<StickerOnlyPreview*/}
+            {/*    formData={formData}*/}
+            {/*    setFormData={setFormData}*/}
+            {/*    formRef={formRef}*/}
+            {/*    visible={visible}*/}
+            {/*    toggleVisible={toggleVisible}*/}
+            {/*    onlyTitleVisible={onlyTitleVisible}*/}
+            {/*/>*/}
 
             <SubmitButton mode={redactorMode} updateHandler={updateStickerHandler} createHandler={createStickerHandler} />
         </div>
