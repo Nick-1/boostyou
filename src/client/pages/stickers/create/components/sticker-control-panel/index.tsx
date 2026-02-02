@@ -6,8 +6,8 @@ import PercentIcon from '@mui/icons-material/Percent';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import PhoneIcon from '@mui/icons-material/Phone';
 import PlaceIcon from '@mui/icons-material/Place';
-import QrCodeIcon from '@mui/icons-material/QrCode';
-import ImageIcon from '@mui/icons-material/Image';
+// import QrCodeIcon from '@mui/icons-material/QrCode';
+// import ImageIcon from '@mui/icons-material/Image';
 import type {StickerVisibleFields} from '../../hooks/useStickerFieldVisibility.ts';
 
 import './style.scss';
@@ -18,8 +18,8 @@ type Props = {
 };
 
 export const StickerControlPanel: FC<Props> = ({ visible, onToggleVisible }) => {
-    const qrSelected = visible.qr || visible.qrAndLogo;
-    const logoSelected = visible.logo || visible.qrAndLogo;
+    // const qrSelected = visible.qr || visible.qrAndLogo;
+    // const logoSelected = visible.logo || visible.qrAndLogo;
 
     return (
         <aside className="control-panel control-panel--vertical">

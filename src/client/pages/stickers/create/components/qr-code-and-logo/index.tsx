@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import { type CustomerLogoProps, CustomerLogoUpload } from '../customer-logo-upload';
+import { type CustomerLogoProps } from '../customer-logo-upload';
 import { CustomerQrCode, type CustomerQrCodeProps } from '../customer-qr-code';
 
 import type {StickerVisibleFields} from '../../hooks/useStickerFieldVisibility.ts';
@@ -9,9 +9,7 @@ import './style.scss';
 
 type Props = CustomerLogoProps & CustomerQrCodeProps & { visible: StickerVisibleFields };
 
-export const QrCodeAndLogo: FC<Props> = ({ logoFile, onLogoChange, logoUrl, qrCodeLink, onQrCodeLinkChange, visible }) => {
-
-
+export const QrCodeAndLogo: FC<Props> = ({ qrCodeLink, onQrCodeLinkChange }) => {
     return (
         <div className="qr-code-container">
           <CustomerQrCode onQrCodeLinkChange={onQrCodeLinkChange} qrCodeLink={qrCodeLink} />
