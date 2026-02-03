@@ -1,7 +1,7 @@
 import type {FC} from 'react';
 import Button from '@mui/material/Button';
 import { Box } from '@mui/material';
-// import EditDocumentIcon from '@mui/icons-material/EditDocument';
+import EditDocumentIcon from '@mui/icons-material/EditDocument';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 
 import { RedactorMode } from '../enum.ts';
@@ -14,15 +14,14 @@ interface SubmitButtonProps {
     mode?: RedactorMode;
 }
 
-export const SubmitButton: FC<SubmitButtonProps> = (/*props*/) => {
-    // const { mode, createHandler, updateHandler } = props;
-    // const currentMode = mode ? mode : RedactorMode.CREATE;
+export const SubmitButton: FC<SubmitButtonProps> = (props) => {
+    const { mode, createHandler, updateHandler } = props;
+    const currentMode = mode ? mode : RedactorMode.CREATE;
 
     return (
         <Box className="submit-button__container no-print">
-            { <Button startIcon={<NoteAddIcon/>} variant="contained" size="large">Create</Button>}
-            {/*{ currentMode === RedactorMode.CREATE && <Button onClick={createHandler} startIcon={<NoteAddIcon/>} variant="contained" size="large">Create</Button>}*/}
-            {/*{ currentMode === RedactorMode.UPDATE && <Button onClick={updateHandler} startIcon={<EditDocumentIcon />} variant="contained" size="large">Update</Button>}*/}
+            { currentMode === RedactorMode.CREATE && <Button onClick={createHandler} startIcon={<NoteAddIcon/>} variant="contained" size="large">Create</Button>}
+            { currentMode === RedactorMode.UPDATE && <Button onClick={updateHandler} startIcon={<EditDocumentIcon />} variant="contained" size="large">Update</Button>}
         </Box>
     )
 }

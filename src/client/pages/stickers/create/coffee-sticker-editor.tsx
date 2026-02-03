@@ -17,6 +17,7 @@ import { useStickerFieldVisibility } from './hooks/useStickerFieldVisibility.ts'
 
 import './components/color-picker-popover/color-schema.scss';
 import './style.scss';
+import { createSticker } from '../../../../modules/stickers/api/stickers.api.ts';
 
 interface CoffeeStickerEditorPageProps {
     updateFields?: StickerData | null;
@@ -57,15 +58,26 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
     const initialVisible = updateFields ? fromStickerDataToVisibleFieldsMapper(formValues) : undefined;
     const { visible, toggleVisible, onlyTitleVisible } = useStickerFieldVisibility(initialVisible);
 
-    const createStickerHandler = () => {
+    const createStickerHandler = async () => {
         const id = new Date().getTime();
         if (formRef.current && !formRef.current.reportValidity()) return;
 
         const payload = { ...formData, logoFile: null };
         addSticker({ ...payload, id });
 
-        console.info('formData---', formData)
-        navigate(CLIENT_ROUTE.order.create);
+        console.info('formData---', formData);
+
+        await createSticker({
+            name: formData.name,
+            title: formData.title,
+            highlightedText: formData.highlightedText,
+            discount: formData.discount,
+            promo: formData.promo,
+            phone: formData.phone,
+            address: formData.address,
+            qrCodeLink: formData.qrCodeLink
+        })
+        // navigate(CLIENT_ROUTE.order.create);
     };
 
     const updateStickerHandler = () => {

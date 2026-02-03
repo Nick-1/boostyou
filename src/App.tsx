@@ -15,7 +15,6 @@ import PaymentSuccessPage from './client/pages/order/payment-success';
 import theme from './theme';
 import { DemoUser } from './client/fake-data/user.ts';
 import { CLIENT_ROUTE } from './client/common/routes.ts';
-import PingTest from './client/pages/ping-test';
 import { HomePage } from './modules/home/home-page.tsx';
 
 const { stickers, order, home } = CLIENT_ROUTE;
@@ -47,7 +46,6 @@ function App() {
             </Route>
 
             <Route element={<Layout />}>
-                <Route path="ping-test" element={<PingTest />} />
                 <Route path={stickers.root} >
                     <Route path={stickers.list} element={<StickersListPage />} />
                     <Route path={stickers.create} element={<CreateStickerPage />} />
