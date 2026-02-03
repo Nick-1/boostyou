@@ -1,4 +1,5 @@
 import { type FC, use, useRef, useState } from 'react';
+import { Alert, Snackbar } from '@mui/material';
 import { useNavigate, useParams } from 'react-router';
 
 import { UserContext } from '../../../context/user-context.tsx';
@@ -15,9 +16,11 @@ import { RedactorMode, StickerForm, StickerStyle } from './enum.ts';
 // import { StickerOnlyPreview } from './components/main-preview/sticker-only';
 import { useStickerFieldVisibility } from './hooks/useStickerFieldVisibility.ts';
 
+import { createSticker } from '../../../../modules/stickers/api/stickers.api.ts';
+import { ContactDetailsDialog } from './components/before-create-dialog';
+
 import './components/color-picker-popover/color-schema.scss';
 import './style.scss';
-import { createSticker } from '../../../../modules/stickers/api/stickers.api.ts';
 
 interface CoffeeStickerEditorPageProps {
     updateFields?: StickerData | null;
@@ -58,14 +61,21 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
     const initialVisible = updateFields ? fromStickerDataToVisibleFieldsMapper(formValues) : undefined;
     const { visible, toggleVisible, onlyTitleVisible } = useStickerFieldVisibility(initialVisible);
 
-    const createStickerHandler = async () => {
-        const id = new Date().getTime();
+    const [contactDialogOpen, setContactDialogOpen] = useState(false);
+    const [successSnackbarOpen, setSuccessSnackbarOpen] = useState(false);
+
+    const createStickerHandler = () => {
+        // First validate the form fields; only then show the contact popup
         if (formRef.current && !formRef.current.reportValidity()) return;
+
+        setContactDialogOpen(true);
+    };
+
+    const confirmCreateStickerHandler = async ({ contactEmail, contactPhone }: { contactEmail?: string; contactPhone?: string }) => {
+        const id = new Date().getTime();
 
         const payload = { ...formData, logoFile: null };
         addSticker({ ...payload, id });
-
-        console.info('formData---', formData);
 
         await createSticker({
             name: formData.name,
@@ -73,11 +83,14 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
             highlightedText: formData.highlightedText,
             discount: formData.discount,
             promo: formData.promo,
-            phone: formData.phone,
             address: formData.address,
-            qrCodeLink: formData.qrCodeLink
-        })
-        // navigate(CLIENT_ROUTE.order.create);
+            qrCodeLink: formData.qrCodeLink,
+            contactEmail,
+            contactPhone,
+        } as any);
+
+        setContactDialogOpen(false);
+        setSuccessSnackbarOpen(true);
     };
 
     const updateStickerHandler = () => {
@@ -114,6 +127,23 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
             {/*    toggleVisible={toggleVisible}*/}
             {/*    onlyTitleVisible={onlyTitleVisible}*/}
             {/*/>*/}
+
+            <ContactDetailsDialog
+                open={contactDialogOpen}
+                onClose={() => setContactDialogOpen(false)}
+                onConfirm={confirmCreateStickerHandler}
+            />
+
+            <Snackbar
+                open={successSnackbarOpen}
+                autoHideDuration={3500}
+                onClose={() => setSuccessSnackbarOpen(false)}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            >
+                <Alert onClose={() => setSuccessSnackbarOpen(false)} severity="success" variant="filled" sx={{ width: '100%' }}>
+                    Message sent!
+                </Alert>
+            </Snackbar>
 
             <SubmitButton mode={redactorMode} updateHandler={updateStickerHandler} createHandler={createStickerHandler} />
         </div>
