@@ -1,5 +1,5 @@
-import { type FC, use, useRef, useState } from 'react';
-import { Alert, Snackbar } from '@mui/material';
+import { type FC, use, useRef, useState, useEffect } from 'react';
+import { Alert, Dialog } from '@mui/material';
 import { useNavigate, useParams } from 'react-router';
 
 import { UserContext } from '../../../context/user-context.tsx';
@@ -63,6 +63,16 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
 
     const [contactDialogOpen, setContactDialogOpen] = useState(false);
     const [successSnackbarOpen, setSuccessSnackbarOpen] = useState(false);
+
+    useEffect(() => {
+        if (!successSnackbarOpen) return;
+
+        const timer = setTimeout(() => {
+            setSuccessSnackbarOpen(false);
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, [successSnackbarOpen]);
 
     const createStickerHandler = () => {
         // First validate the form fields; only then show the contact popup
@@ -134,16 +144,14 @@ export const CoffeeStickerEditorPage: FC<CoffeeStickerEditorPageProps> = (props)
                 onConfirm={confirmCreateStickerHandler}
             />
 
-            <Snackbar
-                open={successSnackbarOpen}
-                autoHideDuration={3500}
-                onClose={() => setSuccessSnackbarOpen(false)}
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            <Dialog
+              open={successSnackbarOpen}
+              onClose={() => setSuccessSnackbarOpen(false)}
             >
-                <Alert onClose={() => setSuccessSnackbarOpen(false)} severity="success" variant="filled" sx={{ width: '100%' }}>
+                <Alert severity="success" variant="filled">
                     Message sent!
                 </Alert>
-            </Snackbar>
+            </Dialog>
 
             <SubmitButton mode={redactorMode} updateHandler={updateStickerHandler} createHandler={createStickerHandler} />
         </div>
